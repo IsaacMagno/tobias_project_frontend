@@ -4,7 +4,7 @@ import actualChampion from '../../functions/actualChampion';
 
 const RenderFiles = ({files, champions}) => {
   const navigate = useNavigate();
-  const URL = "http://localhost:3003/images/";
+  const URL = "https://tobias-project-db.herokuapp.com/images/";
 
   const selectChamp = (id) => {
     const championSelected = actualChampion(champions, id);
