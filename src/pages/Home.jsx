@@ -1,7 +1,7 @@
-import React from 'react';
-import Header from '../components/Header';
-import Images from '../components/Images';
-import Movies from '../components/Movies';
+import React from "react";
+import Header from "../components/Header";
+import Images from "../components/Images";
+import Movies from "../components/Movies";
 
 function Home() {
   return (
@@ -10,7 +10,7 @@ function Home() {
       <Images />
       <Movies />
     </div>
-  )
+  );
 }
 
 export default Home;
