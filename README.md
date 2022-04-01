@@ -6,4 +6,3 @@
 - React
 - Axios
 - Bootstrap
-- ESlint
