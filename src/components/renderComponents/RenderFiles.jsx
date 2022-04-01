@@ -20,7 +20,7 @@ const RenderFiles = ({ files, champions }) => {
             <img
               src={URL + file.image}
               alt={file.id}
-              key={file.id}
+              key={file.image}
               className='img-thumbnail mt-5'
               onClick={() => selectChamp(file.id)}
             />

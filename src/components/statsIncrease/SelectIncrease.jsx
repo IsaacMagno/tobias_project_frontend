@@ -1,5 +1,5 @@
-const SelectIncrease = ({ renderComponent }) => {
-  return (
+const SelectIncrease = ({ renderComponent, token }) => {
+  return token ? (
     <div className='stats-select'>
       <select
         className='form-select-sm p-2 m-2 bg-dark text-white'
@@ -12,7 +12,7 @@ const SelectIncrease = ({ renderComponent }) => {
         <option value='vitality'>Vitality</option>
       </select>
     </div>
-  );
+  ) : null;
 };
 
 export default SelectIncrease;

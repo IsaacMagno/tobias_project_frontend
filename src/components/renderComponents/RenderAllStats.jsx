@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import renderStatsIncrease from "../../functions/renderStatsIncrease";
-import SelectIncrease from "../statsIncrease/selectIncrease";
+import SelectIncrease from "../statsIncrease/SelectIncrease";
 import cleanArray from "../../functions/cleanArray";
 import "../../styles/StatsCard.css";
 
@@ -8,6 +8,7 @@ const RenderAllStats = () => {
   const [renderStats, setRenderStats] = useState([]);
   const [renderActivities, setRenderActivities] = useState([]);
   const [name, setName] = useState("");
+  const [userToken, setToken] = useState(false);
   const [update, setUpdate] = useState(false);
   const [ComponentRender, setComponent] = useState();
 
@@ -22,6 +23,8 @@ const RenderAllStats = () => {
 
   useEffect(() => {
     const championSelected = JSON.parse(sessionStorage.getItem("champion"));
+    const token = JSON.parse(sessionStorage.getItem("token"));
+    setToken(championSelected.googleId === token ? true : false);
     setRenderStats(championSelected.statistics);
     setRenderActivities(championSelected.activities);
     setName(championSelected.name);
@@ -48,7 +51,10 @@ const RenderAllStats = () => {
           </div>
 
           <div className='col-2 mt-4'>
-            <SelectIncrease renderComponent={renderComponent} />
+            <SelectIncrease
+              renderComponent={renderComponent}
+              token={userToken}
+            />
           </div>
 
           <div className='col mt-4'>{ComponentRender}</div>
