@@ -1,7 +1,7 @@
-import StrIncrease from '../components/statsIncrease/StrIncrease';
-import IntIncrease from '../components/statsIncrease/IntIncrease';
-import AgiIncrease from '../components/statsIncrease/AgiIncrease';
-import VitIncrease from '../components/statsIncrease/VitIncrease';
+import StrIncrease from "../components/statsIncrease/StrIncrease";
+import IntIncrease from "../components/statsIncrease/IntIncrease";
+import AgiIncrease from "../components/statsIncrease/AgiIncrease";
+import VitIncrease from "../components/statsIncrease/VitIncrease";
 
 const renderStatsIncrease = (value, reRender) => {
   if (value === "strength") return <StrIncrease reRender={reRender} />;

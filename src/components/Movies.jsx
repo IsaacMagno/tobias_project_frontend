@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 // import video from '../movies/primeirovideo.mp4';
 // import video2 from '../movies/segundoVideo.mp4';
 
@@ -13,7 +13,7 @@ function Movies() {
         <source src={ video2 } type='video/mp4'></source>
       </video> */}
     </div>
-  )
+  );
 }
 
 export default Movies;
