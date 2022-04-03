@@ -1,12 +1,13 @@
 import axios from "axios";
 import actualChampion from "../../functions/actualChampion";
+import { BASE_URL } from "../../services/axiosRequests";
 
 const statusUpdate = async (nameStat, value, id, reRender) => {
   const update = await axios
-    .put(`https://tobias-project-db.herokuapp.com/activities/${id}`, {
+    .put(`${BASE_URL}/activities/${id}`, {
       [nameStat]: value,
     })
-    .then(() => axios.get("https://tobias-project-db.herokuapp.com/"))
+    .then(() => axios.get(BASE_URL))
     .then((o) => o.data.champions);
 
   const championUpdated = actualChampion(update, id);

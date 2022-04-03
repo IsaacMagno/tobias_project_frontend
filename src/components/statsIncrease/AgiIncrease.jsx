@@ -7,6 +7,7 @@ const AgiIncrease = ({ reRender }) => {
   const { id } = useParams();
   const [race, setRace] = useState("");
   const [rope, setRope] = useState("");
+  const [bike, setBike] = useState("");
 
   const aux = (statName, stat, setStat) => {
     statusUpdate(statName, parseInt(stat), id, reRender);
@@ -22,7 +23,7 @@ const AgiIncrease = ({ reRender }) => {
         <div className='input-group input-group-sm mb-3'>
           <input
             className='form-control-sm'
-            id='agility-increase'
+            id='agility-increase-run'
             placeholder="Km's Corridos"
             type='number'
             name='kmRun'
@@ -44,7 +45,7 @@ const AgiIncrease = ({ reRender }) => {
         <div className='input-group input-group-sm mb-3'>
           <input
             className='form-control-sm'
-            id='agility-increase'
+            id='agility-increase-jump'
             placeholder='Saltos de Corda'
             type='number'
             name='jumpRope'
@@ -56,6 +57,28 @@ const AgiIncrease = ({ reRender }) => {
             className='btn btn-outline-success btn-sm'
             type='button'
             onClick={() => aux("jumpRope", rope, setRope)}
+          >
+            Enviar
+          </button>
+        </div>
+      </div>
+
+      <div className='col'>
+        <div className='input-group input-group-sm mb-3'>
+          <input
+            className='form-control-sm'
+            id='agility-increase-bike'
+            placeholder="Km's Pedalados"
+            type='number'
+            name='kmBike'
+            value={bike}
+            onChange={({ target }) => setBike(target.value)}
+          />
+
+          <button
+            className='btn btn-outline-success btn-sm'
+            type='button'
+            onClick={() => aux("kmBike", bike, setBike)}
           >
             Enviar
           </button>
