@@ -1,5 +1,4 @@
 const SelectIncrease = ({ renderComponent, token }) => {
-  console.log("heroku");
   return token ? (
     <div className='stats-select'>
       <select

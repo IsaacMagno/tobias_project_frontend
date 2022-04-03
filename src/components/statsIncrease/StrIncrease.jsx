@@ -6,7 +6,8 @@ const StrIncrease = ({ reRender }) => {
   const { id } = useParams();
 
   const [abs, setAbs] = useState("");
-  const [pushUps, setpushUps] = useState("");
+  const [upperLimb, setUpperLimb] = useState("");
+  const [lowerLimb, setLowerLimb] = useState("");
 
   const aux = (statName, stat, setStat) => {
     statusUpdate(statName, parseInt(stat), id, reRender);
@@ -22,18 +23,18 @@ const StrIncrease = ({ reRender }) => {
         <div className='input-group input-group-sm mb-3'>
           <input
             className='form-control-sm'
-            id='pushUp-increase'
-            placeholder='Flexões'
+            id='upperLimb-increase'
+            placeholder='Membros Superiores'
             type='number'
-            name='pushUp'
-            value={pushUps}
-            onChange={({ target }) => setpushUps(target.value)}
+            name='upperLimb'
+            value={upperLimb}
+            onChange={({ target }) => setUpperLimb(target.value)}
           />
 
           <button
             className='btn btn-outline-warning btn-sm'
             type='button'
-            onClick={() => aux("pushUp", pushUps, setpushUps)}
+            onClick={() => aux("upperLimb", upperLimb, setUpperLimb)}
           >
             Enviar
           </button>
@@ -56,6 +57,28 @@ const StrIncrease = ({ reRender }) => {
             className='btn btn-outline-warning btn-sm'
             type='button'
             onClick={() => aux("abs", abs, setAbs)}
+          >
+            Enviar
+          </button>
+        </div>
+      </div>
+
+      <div className='col'>
+        <div className='input-group input-group-sm mb-3'>
+          <input
+            className='form-control-sm'
+            id='lowerLimb-increase'
+            placeholder='Membros Inferiores'
+            type='number'
+            name='lowerLimb'
+            value={lowerLimb}
+            onChange={({ target }) => setLowerLimb(target.value)}
+          />
+
+          <button
+            className='btn btn-outline-warning btn-sm'
+            type='button'
+            onClick={() => aux("lowerLimb", lowerLimb, setLowerLimb)}
           >
             Enviar
           </button>
