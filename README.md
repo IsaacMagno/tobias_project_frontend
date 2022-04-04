@@ -4,5 +4,6 @@
 
 #### 🚧  Principais Tecnologias utlizadas no desenvolvimento Front-End
 - React
+- Redux
 - Axios
 - Bootstrap
