@@ -1,17 +1,21 @@
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
+import { selectChampion } from "../../Redux/reducers/championsSlice";
 import statusUpdate from "./StatusUpdate";
 
 const VitIncrease = ({ reRender }) => {
   const { id } = useParams();
+  const dispatch = useDispatch();
   const [meals, setMeals] = useState("");
   const [drinks, setDrinks] = useState("");
 
-  const aux = (statName, stat, setStat) => {
-    statusUpdate(statName, parseInt(stat), id, reRender);
-
+  const aux = async (statName, stat, setStat) => {
+    const champ = await statusUpdate(statName, parseInt(stat), id, reRender);
+    dispatch(selectChampion(champ));
     setStat("");
   };
+
   return (
     <div className='container'>
       <h4 className='text-primary'>Vitalidade</h4>

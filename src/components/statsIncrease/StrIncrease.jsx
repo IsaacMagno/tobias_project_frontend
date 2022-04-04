@@ -1,17 +1,19 @@
 import React, { useState } from "react";
 import { useParams } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { selectChampion } from "../../Redux/reducers/championsSlice";
 import statusUpdate from "./StatusUpdate";
 
 const StrIncrease = ({ reRender }) => {
   const { id } = useParams();
-
+  const dispatch = useDispatch();
   const [abs, setAbs] = useState("");
   const [upperLimb, setUpperLimb] = useState("");
   const [lowerLimb, setLowerLimb] = useState("");
 
-  const aux = (statName, stat, setStat) => {
-    statusUpdate(statName, parseInt(stat), id, reRender);
-
+  const aux = async (statName, stat, setStat) => {
+    const champ = await statusUpdate(statName, parseInt(stat), id);
+    dispatch(selectChampion(champ));
     setStat("");
   };
 

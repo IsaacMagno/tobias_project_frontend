@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 import renderStatsIncrease from "../../functions/renderStatsIncrease";
 import SelectIncrease from "../statsIncrease/SelectIncrease";
 import cleanArray from "../../functions/cleanArray";
@@ -11,9 +12,11 @@ const RenderAllStats = () => {
   const [userToken, setToken] = useState(false);
   const [update, setUpdate] = useState(false);
   const [ComponentRender, setComponent] = useState();
+  const selector = useSelector((state) => state.champions);
 
   const reRender = (bool) => {
     setUpdate(bool);
+    console.log(update);
   };
 
   const renderComponent = ({ value }) => {
@@ -22,15 +25,16 @@ const RenderAllStats = () => {
   };
 
   useEffect(() => {
-    const championSelected = JSON.parse(sessionStorage.getItem("champion"));
+    const { selectedChampion } = selector;
+    console.log(selectedChampion);
     const token = JSON.parse(sessionStorage.getItem("token"));
-    setToken(championSelected.googleId === token ? true : false);
-    setRenderStats(championSelected.statistics);
-    setRenderActivities(championSelected.activities);
-    setName(championSelected.name);
+    setToken(selectedChampion.googleId === token ? true : false);
+    setRenderStats(selectedChampion.statistics);
+    setRenderActivities(selectedChampion.activities);
+    setName(selectedChampion.name);
 
-    setUpdate(false);
-  }, [update]);
+    // setUpdate(false);
+  }, [selector]);
 
   const renderStatsArray = cleanArray(Object.entries(renderStats));
   const renderActivitiesArray = cleanArray(Object.entries(renderActivities));

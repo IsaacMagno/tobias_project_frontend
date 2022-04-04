@@ -1,17 +1,19 @@
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
+import { selectChampion } from "../../Redux/reducers/championsSlice";
 import statusUpdate from "./StatusUpdate";
-import "../../styles/StatsCard.css";
 
 const AgiIncrease = ({ reRender }) => {
   const { id } = useParams();
+  const dispatch = useDispatch();
   const [race, setRace] = useState("");
   const [rope, setRope] = useState("");
   const [bike, setBike] = useState("");
 
-  const aux = (statName, stat, setStat) => {
-    statusUpdate(statName, parseInt(stat), id, reRender);
-
+  const aux = async (statName, stat, setStat) => {
+    const champ = await statusUpdate(statName, parseInt(stat), id);
+    dispatch(selectChampion(champ));
     setStat("");
   };
 

@@ -2,7 +2,7 @@ import axios from "axios";
 import actualChampion from "../../functions/actualChampion";
 import { BASE_URL } from "../../services/axiosRequests";
 
-const statusUpdate = async (nameStat, value, id, reRender) => {
+const statusUpdate = async (nameStat, value, id) => {
   const update = await axios
     .put(`${BASE_URL}/activities/${id}`, {
       [nameStat]: value,
@@ -12,8 +12,7 @@ const statusUpdate = async (nameStat, value, id, reRender) => {
 
   const championUpdated = actualChampion(update, id);
 
-  sessionStorage.setItem("champion", JSON.stringify(championUpdated));
-  reRender(true);
+  return championUpdated;
 };
 
 export default statusUpdate;
