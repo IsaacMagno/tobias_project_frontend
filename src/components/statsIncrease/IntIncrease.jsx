@@ -3,11 +3,11 @@ import { useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import { selectChampion } from "../../Redux/reducers/championsSlice";
 import statusUpdate from "./StatusUpdate";
-import "../../styles/StatsCard.css";
 
-const IntIncrease = ({ reRender }) => {
+const IntIncrease = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
+
   const [study, setStudy] = useState("");
   const [reading, setReading] = useState("");
   const [meditation, setMeditation] = useState("");
@@ -19,7 +19,7 @@ const IntIncrease = ({ reRender }) => {
   };
   return (
     <div className='container'>
-      <h4 className='text-danger'>Inteligência</h4>
+      <h4 className='text-red'>Inteligência</h4>
 
       <div className='col'>
         <div className='input-group input-group-sm mb-3'>
@@ -34,7 +34,7 @@ const IntIncrease = ({ reRender }) => {
           />
 
           <button
-            className='btn btn-outline-danger btn-sm'
+            className='btn btn-outline-red btn-sm'
             type='button'
             onClick={() => aux("study", study, setStudy)}
           >
@@ -56,7 +56,7 @@ const IntIncrease = ({ reRender }) => {
           />
 
           <button
-            className='btn btn-outline-danger btn-sm'
+            className='btn btn-outline-red btn-sm'
             type='button'
             onClick={() => aux("reading", reading, setReading)}
           >
@@ -78,7 +78,7 @@ const IntIncrease = ({ reRender }) => {
           />
 
           <button
-            className='btn btn-outline-danger btn-sm'
+            className='btn btn-outline-red btn-sm'
             type='button'
             onClick={() => aux("meditation", meditation, setMeditation)}
           >

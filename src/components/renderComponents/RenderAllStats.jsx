@@ -3,37 +3,28 @@ import { useSelector } from "react-redux";
 import renderStatsIncrease from "../../functions/renderStatsIncrease";
 import SelectIncrease from "../statsIncrease/SelectIncrease";
 import cleanArray from "../../functions/cleanArray";
-import "../../styles/StatsCard.css";
 
 const RenderAllStats = () => {
   const [renderStats, setRenderStats] = useState([]);
   const [renderActivities, setRenderActivities] = useState([]);
+  const [token, setToken] = useState("");
   const [name, setName] = useState("");
-  const [userToken, setToken] = useState(false);
-  const [update, setUpdate] = useState(false);
   const [ComponentRender, setComponent] = useState();
   const selector = useSelector((state) => state.champions);
 
-  const reRender = (bool) => {
-    setUpdate(bool);
-    console.log(update);
-  };
-
   const renderComponent = ({ value }) => {
-    const componentName = renderStatsIncrease(value, reRender);
+    const componentName = renderStatsIncrease(value);
     return setComponent(componentName);
   };
 
   useEffect(() => {
     const { selectedChampion } = selector;
-    console.log(selectedChampion);
-    const token = JSON.parse(sessionStorage.getItem("token"));
-    setToken(selectedChampion.googleId === token ? true : false);
-    setRenderStats(selectedChampion.statistics);
-    setRenderActivities(selectedChampion.activities);
-    setName(selectedChampion.name);
+    const { googleId, statistics, activities, name } = selectedChampion;
 
-    // setUpdate(false);
+    setToken(googleId);
+    setRenderStats(statistics);
+    setRenderActivities(activities);
+    setName(name);
   }, [selector]);
 
   const renderStatsArray = cleanArray(Object.entries(renderStats));
@@ -42,8 +33,8 @@ const RenderAllStats = () => {
   return (
     <div className='container'>
       <div className='container'>
-        <div className='row mt-2'>
-          <div className='col-4 card m-2' style={{ width: "18rem" }}>
+        <div className='row'>
+          <div className='col-4 card mt-2 me-1 p-3'>
             <ul className='list-group list-group-flush'>
               <li className='list-group-item'>{`Nome: ${name}`}</li>
               {renderStatsArray.map((stat) => (
@@ -53,27 +44,31 @@ const RenderAllStats = () => {
               ))}
             </ul>
           </div>
+          <div className='card col bg-light-dark mt-2'>
+            <div className='row'>
+              <div className='col-3 mt-4'>
+                <SelectIncrease
+                  renderComponent={renderComponent}
+                  token={token}
+                />
+              </div>
 
-          <div className='col-2 mt-4'>
-            <SelectIncrease
-              renderComponent={renderComponent}
-              token={userToken}
-            />
+              <div className='col mt-4'>{ComponentRender}</div>
+            </div>
           </div>
-
-          <div className='col mt-4'>{ComponentRender}</div>
         </div>
 
         <div className='row mt-1'>
-          <div className='col-4 card m-2' style={{ width: "18rem" }}>
+          <div className='col-4 card bg-light-dark me-1'>
             <ul className='list-group list-group-flush'>
               {renderActivitiesArray.map((stat) => (
-                <li className='list-group-item' key={stat[0]}>
+                <li className='list-group-item text-gainsboro' key={stat[0]}>
                   {`${stat[0]}: ${stat[1]}`}
                 </li>
               ))}
             </ul>
           </div>
+          <div className='col card bg-white'></div>
         </div>
       </div>
     </div>

@@ -9,7 +9,8 @@ import {
   setChampions,
   setChampionFiles,
 } from "./Redux/reducers/championsSlice";
-import "bootstrap/dist/css/bootstrap.min.css";
+// import "bootstrap/dist/css/bootstrap.min.css";
+import "../src/styles/main.css";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -17,6 +18,7 @@ const App = () => {
   useEffect(() => {
     const allStats = async () =>
       await getStats().then((o) => dispatch(setChampions(o)));
+
     allStats();
 
     const allFiles = async () =>
