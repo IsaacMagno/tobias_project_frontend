@@ -1,12 +1,13 @@
 import React from "react";
-// import mapa1 from '../images/casaRischiotto.jpeg';
-// import mapa2 from '../images/quatroKm.jpeg';
-// import mapa3 from '../images/tamanhoCampo.jpeg';
 
 function Images() {
   return (
-    <div className='container bg-primary p-5 mt-2'>
-      <span>IMAGENS</span>
+    <div className='container-fluid'>
+      <div className='d-flex justify-content-center m-2 '>
+        <div className='container card bg-dark p-4 text-center'>
+          <p className='text-light'>Images</p>
+        </div>
+      </div>
     </div>
   );
 }

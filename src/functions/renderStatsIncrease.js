@@ -1,3 +1,4 @@
+import React from "react";
 import StrIncrease from "../components/statsIncrease/StrIncrease";
 import IntIncrease from "../components/statsIncrease/IntIncrease";
 import AgiIncrease from "../components/statsIncrease/AgiIncrease";

@@ -4,14 +4,14 @@ import { useParams } from "react-router-dom";
 import { selectChampion } from "../../Redux/reducers/championsSlice";
 import statusUpdate from "./StatusUpdate";
 
-const VitIncrease = ({ reRender }) => {
+const VitIncrease = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
   const [meals, setMeals] = useState("");
   const [drinks, setDrinks] = useState("");
 
   const aux = async (statName, stat, setStat) => {
-    const champ = await statusUpdate(statName, parseInt(stat), id, reRender);
+    const champ = await statusUpdate(statName, parseInt(stat), id);
     dispatch(selectChampion(champ));
     setStat("");
   };

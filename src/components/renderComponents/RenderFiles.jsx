@@ -1,3 +1,4 @@
+import React from "react";
 import { useNavigate } from "react-router-dom";
 import { BASE_URL } from "../../services/axiosRequests";
 import { selectChampion } from "../../Redux/reducers/championsSlice";
@@ -20,7 +21,7 @@ const RenderFiles = () => {
     <div className='container'>
       <div className='row'>
         {championFiles.map((file) => (
-          <div className='col-4 bg-light' key={file.image}>
+          <div className='col-4' key={file.image}>
             <img
               src={`${BASE_URL}/images/${file.image}`}
               alt={"Foto de um Campeão"}

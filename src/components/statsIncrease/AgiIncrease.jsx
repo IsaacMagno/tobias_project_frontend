@@ -4,9 +4,10 @@ import { useParams } from "react-router-dom";
 import { selectChampion } from "../../Redux/reducers/championsSlice";
 import statusUpdate from "./StatusUpdate";
 
-const AgiIncrease = ({ reRender }) => {
+const AgiIncrease = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
+
   const [race, setRace] = useState("");
   const [rope, setRope] = useState("");
   const [bike, setBike] = useState("");
@@ -19,7 +20,7 @@ const AgiIncrease = ({ reRender }) => {
 
   return (
     <div className='container'>
-      <h4 className='text-success'>Agilidade</h4>
+      <h4 className='text-green'>Agilidade</h4>
 
       <div className='col'>
         <div className='input-group input-group-sm mb-3'>
@@ -34,7 +35,7 @@ const AgiIncrease = ({ reRender }) => {
           />
 
           <button
-            className='btn btn-outline-success btn-sm'
+            className='btn btn-outline-green btn-sm'
             type='button'
             onClick={() => aux("kmRun", race, setRace)}
           >
@@ -56,7 +57,7 @@ const AgiIncrease = ({ reRender }) => {
           />
 
           <button
-            className='btn btn-outline-success btn-sm'
+            className='btn btn-outline-green btn-sm'
             type='button'
             onClick={() => aux("jumpRope", rope, setRope)}
           >
@@ -78,7 +79,7 @@ const AgiIncrease = ({ reRender }) => {
           />
 
           <button
-            className='btn btn-outline-success btn-sm'
+            className='btn btn-outline-green btn-sm'
             type='button'
             onClick={() => aux("kmBike", bike, setBike)}
           >

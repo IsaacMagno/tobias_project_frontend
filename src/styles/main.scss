@@ -1,0 +1,42 @@
+@import "../../node_modules/bootstrap/scss/functions";
+@import "../../node_modules/bootstrap/scss/variables";
+@import "../../node_modules/bootstrap/scss/mixins";
+
+$ocean: #122365;
+$dark-ocean: #050920;
+$gainsboro: #dcdcdc;
+$hard-dark: #141313;
+$light-dark: #2a2a2a;
+
+$green: #1d7b08;
+$red: #be1919;
+
+$my-pallete: (
+  "dark-ocean": $dark-ocean,
+  "gainsboro": $gainsboro,
+  "ocean": $ocean,
+  "hard-dark": $hard-dark,
+  "light-dark": $light-dark,
+  "green": $green,
+  "red": $red,
+);
+
+$theme-colors: map-merge($theme-colors, $my-pallete);
+$theme-colors-rgb: map-loop($theme-colors, to-rgb, "$value");
+$utilities-colors: map-merge($utilities-colors, $theme-colors-rgb);
+$utilities-text-colors: map-loop(
+  $utilities-colors,
+  rgba-css-var,
+  "$key",
+  "text"
+);
+$utilities-bg-colors: map-loop($utilities-colors, rgba-css-var, "$key", "bg");
+
+$list-group-bg: transparent;
+$list-group-border-color: transparent;
+
+@import "../../node_modules/bootstrap/scss/bootstrap.scss";
+
+body {
+  background-color: #dcdcdc;
+}

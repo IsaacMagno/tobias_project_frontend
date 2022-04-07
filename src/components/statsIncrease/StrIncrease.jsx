@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 import { selectChampion } from "../../Redux/reducers/championsSlice";
 import statusUpdate from "./StatusUpdate";
 
-const StrIncrease = ({ reRender }) => {
+const StrIncrease = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
   const [abs, setAbs] = useState("");

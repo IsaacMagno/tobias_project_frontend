@@ -1,6 +1,6 @@
 import React, { lazy, Suspense } from "react";
 import Header from "../components/Header";
-import "../styles/StatsCard.css";
+import Loading from "../components/Loading";
 
 const RenderFiles = lazy(() =>
   import("../components/renderComponents/RenderFiles")
@@ -10,7 +10,7 @@ const Champions = () => {
   return (
     <div>
       <Header />
-      <Suspense fallback={<h1>Loading...</h1>}>
+      <Suspense fallback={<Loading />}>
         <RenderFiles />
       </Suspense>
     </div>

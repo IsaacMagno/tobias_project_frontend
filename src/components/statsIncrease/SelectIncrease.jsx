@@ -1,8 +1,14 @@
+import React from "react";
+import { useSelector } from "react-redux";
+
 const SelectIncrease = ({ renderComponent, token }) => {
-  return token ? (
+  const selector = useSelector((state) => state.user);
+  let render = selector.user.googleId === token ? true : false;
+
+  return render ? (
     <div className='stats-select'>
       <select
-        className='form-select-sm p-2 m-2 bg-dark text-white'
+        className='form-select-sm p-2 m-2 bg-hard-dark text-gainsboro'
         onChange={({ target }) => renderComponent(target)}
       >
         <option value='DEFAULT'>Select</option>
