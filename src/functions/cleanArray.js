@@ -21,6 +21,7 @@ const activities = {
 };
 
 const formatedData = (arr, type) => {
+  // eslint-disable-next-line
   const formated = arr.map((elem) => {
     if (type === "stats") return (elem[0] = stats[elem[0]]);
     if (type === "activities") return (elem[0] = activities[elem[0]]);

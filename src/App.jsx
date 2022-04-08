@@ -11,6 +11,7 @@ import {
 } from "./Redux/reducers/championsSlice";
 // import "bootstrap/dist/css/bootstrap.min.css";
 import "../src/styles/main.css";
+import "bootstrap-icons/font/bootstrap-icons.css";
 
 const App = () => {
   const dispatch = useDispatch();

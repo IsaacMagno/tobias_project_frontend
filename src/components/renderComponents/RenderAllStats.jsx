@@ -4,8 +4,13 @@ import StrIncrease from "../statsIncrease/StrIncrease";
 import renderStatsIncrease from "../../functions/renderStatsIncrease";
 import SelectIncrease from "../statsIncrease/SelectIncrease";
 import cleanArray from "../../functions/cleanArray";
+import FullCalendar from "@fullcalendar/react";
+import daydgridPlugin from "@fullcalendar/daygrid";
+import interactionPlugin from "@fullcalendar/interaction";
+import bootstrap5Plugin from "@fullcalendar/bootstrap5";
 
 const RenderAllStats = () => {
+  const [color, selectColor] = useState("");
   const [renderStats, setRenderStats] = useState([]);
   const [renderActivities, setRenderActivities] = useState([]);
   const [token, setToken] = useState("");
@@ -17,6 +22,12 @@ const RenderAllStats = () => {
   const renderComponent = ({ value }) => {
     const componentName = renderStatsIncrease(value);
     return setComponent(componentName);
+  };
+
+  const handleDateClick = (dateClickInfo) => {
+    const day = dateClickInfo.dayEl;
+    day.style.backgroundColor = color;
+    console.log(day);
   };
 
   useEffect(() => {
@@ -76,7 +87,32 @@ const RenderAllStats = () => {
               ))}
             </ul>
           </div>
-          <div className='col card bg-white'></div>
+          <div className='col card bg-white'>
+            <div>
+              <div className='btn-group me-2 m-2 p-3' role='group'>
+                <button
+                  type='button'
+                  class='btn btn-green rounded-circle'
+                  onClick={() => selectColor("green")}
+                />
+                <button
+                  type='button'
+                  class='btn btn-warning rounded-circle'
+                  onClick={() => selectColor("yellow")}
+                />
+                <button
+                  type='button'
+                  class='btn btn-red rounded-circle'
+                  onClick={() => selectColor("red")}
+                />
+              </div>
+              <FullCalendar
+                plugins={[daydgridPlugin, interactionPlugin, bootstrap5Plugin]}
+                dateClick={handleDateClick}
+                themeSystem='bootstrap5'
+              />
+            </div>
+          </div>
         </div>
       </div>
     </div>
