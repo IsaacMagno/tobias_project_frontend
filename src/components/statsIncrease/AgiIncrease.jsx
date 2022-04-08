@@ -27,7 +27,7 @@ const AgiIncrease = () => {
           <input
             className='form-control-sm'
             id='agility-increase-run'
-            placeholder="Km's Corridos"
+            placeholder='Km Corridos'
             type='number'
             name='kmRun'
             value={race}
@@ -71,7 +71,7 @@ const AgiIncrease = () => {
           <input
             className='form-control-sm'
             id='agility-increase-bike'
-            placeholder="Km's Pedalados"
+            placeholder='Km Pedalados'
             type='number'
             name='kmBike'
             value={bike}
