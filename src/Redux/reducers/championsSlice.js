@@ -5,7 +5,6 @@ export const championsSlice = createSlice({
   initialState: {
     champions: [],
     selectedChampion: [],
-    championFiles: [],
   },
   reducers: {
     setChampions(state, { payload }) {
@@ -14,13 +13,13 @@ export const championsSlice = createSlice({
     selectChampion(state, { payload }) {
       return { ...state, selectedChampion: payload };
     },
-    setChampionFiles(state, { payload }) {
-      return { ...state, championFiles: payload };
-    },
   },
 });
 
-export const { setChampions, selectChampion, setChampionFiles } =
-  championsSlice.actions;
+export const {
+  setChampions,
+  selectChampion,
+  setChampionFiles,
+} = championsSlice.actions;
 
 export default championsSlice.reducer;

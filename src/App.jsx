@@ -4,10 +4,10 @@ import Home from "./pages/Home";
 import Champions from "./pages/Champions";
 import Stats from "./pages/Stats";
 import { useDispatch } from "react-redux";
-import { getStats, getFiles } from "./services/axiosRequests";
+import { getStats } from "./services/axiosRequests";
 import {
   setChampions,
-  setChampionFiles,
+  // setChampionFiles,
 } from "./Redux/reducers/championsSlice";
 // import "bootstrap/dist/css/bootstrap.min.css";
 import "../src/styles/main.css";
@@ -21,11 +21,6 @@ const App = () => {
       await getStats().then((o) => dispatch(setChampions(o)));
 
     allStats();
-
-    const allFiles = async () =>
-      await getFiles().then((o) => dispatch(setChampionFiles(o)));
-
-    allFiles();
   }, [dispatch]);
 
   return (

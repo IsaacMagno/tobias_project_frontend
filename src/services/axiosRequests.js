@@ -20,3 +20,9 @@ export const getPhrases = async () => {
 
   return phrase;
 };
+
+export const addEvent = async (newEvent, id) => {
+  const event = await axios.post(`${BASE_URL}/calendars/${id}`, { newEvent });
+
+  return event;
+};
