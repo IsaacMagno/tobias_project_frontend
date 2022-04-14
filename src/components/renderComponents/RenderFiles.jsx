@@ -9,7 +9,8 @@ const RenderFiles = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const { championFiles, champions } = useSelector((state) => state.champions);
+  const { champions } = useSelector((state) => state.champions);
+  const championFiles = champions.map((champ) => champ.files);
 
   const selectChamp = (id) => {
     const champ = actualChampion(champions, id);
