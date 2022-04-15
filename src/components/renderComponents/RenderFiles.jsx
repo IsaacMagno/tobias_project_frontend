@@ -10,8 +10,8 @@ const RenderFiles = () => {
   const dispatch = useDispatch();
 
   const { champions } = useSelector((state) => state.champions);
+  console.log(champions);
   const championFiles = champions.map((champ) => champ.files);
-  console.log(championFiles);
 
   const selectChamp = (id) => {
     const champ = actualChampion(champions, id);
