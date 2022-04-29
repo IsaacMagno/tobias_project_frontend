@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import Header from "../components/Header";
 import Loading from "../components/Loading";
 import Images from "../components/Images";
-import Movies from "../components/Movies";
+// import Movies from "../components/Movies";
 import GoogleLogin from "react-google-login";
 import { useDispatch, useSelector } from "react-redux";
 import { getPhrases } from "../services/axiosRequests";
@@ -66,7 +66,7 @@ const Home = () => {
           )}
         </div>
         <Images />
-        <Movies />
+        {/* <Movies /> */}
       </div>
     </div>
   );

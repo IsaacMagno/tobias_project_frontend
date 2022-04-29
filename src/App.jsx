@@ -12,6 +12,8 @@ import {
 // import "bootstrap/dist/css/bootstrap.min.css";
 import "../src/styles/main.css";
 import "bootstrap-icons/font/bootstrap-icons.css";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
 const App = () => {
   const dispatch = useDispatch();
