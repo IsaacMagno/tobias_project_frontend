@@ -19,7 +19,7 @@ const StrIncrease = () => {
 
   return (
     <div className='container'>
-      <h4 className='text-warning'>Força</h4>
+      <h4 className='text-honey-yellow'>Força</h4>
 
       <div className='col'>
         <div className='input-group input-group-sm mb-3'>
@@ -34,7 +34,7 @@ const StrIncrease = () => {
           />
 
           <button
-            className='btn btn-outline-warning btn-sm'
+            className='btn btn-outline-honey-yellow btn-sm'
             type='button'
             onClick={() => aux("upperLimb", upperLimb, setUpperLimb)}
           >
@@ -56,7 +56,7 @@ const StrIncrease = () => {
           />
 
           <button
-            className='btn btn-outline-warning btn-sm'
+            className='btn btn-outline-honey-yellow btn-sm'
             type='button'
             onClick={() => aux("abs", abs, setAbs)}
           >
@@ -78,7 +78,7 @@ const StrIncrease = () => {
           />
 
           <button
-            className='btn btn-outline-warning btn-sm'
+            className='btn btn-outline-honey-yellow btn-sm'
             type='button'
             onClick={() => aux("lowerLimb", lowerLimb, setLowerLimb)}
           >

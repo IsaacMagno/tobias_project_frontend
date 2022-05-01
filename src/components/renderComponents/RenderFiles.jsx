@@ -10,7 +10,7 @@ const RenderFiles = () => {
   const dispatch = useDispatch();
 
   const { champions } = useSelector((state) => state.champions);
-  console.log(champions);
+
   const championFiles = champions.map((champ) => champ.files);
 
   const selectChamp = (id) => {
@@ -23,12 +23,12 @@ const RenderFiles = () => {
     <div className='container'>
       <div className='row'>
         {championFiles.map((file) => (
-          <div className='col-4' key={file.image}>
+          <div className='col-4 rounded' key={file.image}>
             <img
               src={`${BASE_URL}/images/${file.image}`}
               alt={"Foto de um Campeão"}
               key={file.image}
-              className='img-thumbnail mt-5'
+              className='img-thumbnail mt-5 border border-rounded border-auburn'
               onClick={() => selectChamp(file.id)}
             />
           </div>

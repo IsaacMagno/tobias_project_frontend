@@ -52,20 +52,20 @@ const renderCalendar = () => {
 
   return events ? (
     <div>
-      <div className='btn-group me-2 m-2 p-3' role='group'>
+      <div className='d-flex justify-content-center mt-4'>
         <button
           type='button'
-          className='btn btn-green rounded-circle'
+          className='btn btn-green btn-circle btn-xl m-1'
           onClick={() => selectColor("green")}
         />
         <button
           type='button'
-          className='btn btn-warning rounded-circle'
+          className='btn btn-warning btn-circle btn-xl m-1'
           onClick={() => selectColor("yellow")}
         />
         <button
           type='button'
-          className='btn btn-red rounded-circle'
+          className='btn btn-red btn-circle btn-xl m-1'
           onClick={() => selectColor("red")}
         />
       </div>
@@ -73,7 +73,7 @@ const renderCalendar = () => {
         plugins={[daydgridPlugin, interactionPlugin, bootstrap5Plugin]}
         locale='pt-br'
         dateClick={handleDateClick}
-        themeSystem='bootstrap5'
+        // themeSystem='bootstrap5'
         events={events}
       />
     </div>

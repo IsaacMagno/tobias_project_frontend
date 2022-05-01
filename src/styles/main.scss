@@ -2,23 +2,30 @@
 @import "../../node_modules/bootstrap/scss/variables";
 @import "../../node_modules/bootstrap/scss/mixins";
 
-$ocean: #122365;
-$dark-ocean: #050920;
-$gainsboro: #dcdcdc;
-$hard-dark: #141313;
-$light-dark: #2a2a2a;
-
+$orange: #ff8200;
 $green: #1d7b08;
 $red: #be1919;
+$dark-slate-blue: #4f4789;
+$dark-purple: #201335;
+$pale-silver: #bfb8ad;
+$flame: #eb5e28;
+$auburn: #a52422;
+$light-gray: #cccccc;
+$gainsboro: #dcdcdc;
+$honey-yellow: #ffae03;
 
 $my-pallete: (
-  "dark-ocean": $dark-ocean,
-  "gainsboro": $gainsboro,
-  "ocean": $ocean,
-  "hard-dark": $hard-dark,
-  "light-dark": $light-dark,
   "green": $green,
   "red": $red,
+  "orange": $orange,
+  "dark-slate-blue": $dark-slate-blue,
+  "dark-purple": $dark-purple,
+  "pale-silver": $pale-silver,
+  "flame": $flame,
+  "auburn": $auburn,
+  "light-gray": $light-gray,
+  "gainsboro": $gainsboro,
+  "honey-yellow": $honey-yellow,
 );
 
 $theme-colors: map-merge($theme-colors, $my-pallete);
@@ -34,9 +41,12 @@ $utilities-bg-colors: map-loop($utilities-colors, rgba-css-var, "$key", "bg");
 
 $list-group-bg: transparent;
 $list-group-border-color: transparent;
+$thumbnail-bg: transparent;
+$card-border-color: transparent;
 
 @import "../../node_modules/bootstrap/scss/bootstrap.scss";
 
 body {
-  background-color: #dcdcdc;
+  // background-color: #e4d9ff;
+  background-color: #eb5e28;
 }

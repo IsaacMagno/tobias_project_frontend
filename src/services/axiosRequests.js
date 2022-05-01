@@ -26,3 +26,17 @@ export const addEvent = async (newEvent, id) => {
 
   return event;
 };
+
+export const getPractices = async (id) => {
+  const AllPractices = await axios.get(`${BASE_URL}/practice/${id}`);
+
+  return AllPractices;
+};
+
+export const newPractice = async (config, formData, id) => {
+  const createPractice = await axios
+    .post(`${BASE_URL}/practice/${id}`, formData, config)
+    .then((o) => o.data);
+
+  return createPractice;
+};
