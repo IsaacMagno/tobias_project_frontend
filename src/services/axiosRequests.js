@@ -32,3 +32,11 @@ export const getPractices = async (id) => {
 
   return AllPractices;
 };
+
+export const newPractice = async (config, formData, id) => {
+  const createPractice = await axios
+    .post(`${BASE_URL}/practice/${id}`, formData, config)
+    .then((o) => o.data);
+
+  return createPractice;
+};

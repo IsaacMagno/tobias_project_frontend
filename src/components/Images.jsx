@@ -12,7 +12,7 @@ const Images = () => {
     slidesToScroll: 1,
     autoplay: true,
     speed: 4000,
-    autoplaySpeed: 2000,
+    autoplaySpeed: 2500,
     cssEase: "linear",
   };
 
@@ -24,30 +24,30 @@ const Images = () => {
     getPractice();
   }, []);
 
-  console.log(practice);
-
   return (
-    <div className='container-fluid card bg-dark p-4'>
+    <div className='container-fluid card bg-pale-silver p-4'>
       <Slider {...settings}>
         {practice.map((img) =>
           img.image.endsWith("mp4") ? (
-            <div>
+            <div key={img.id}>
               <video
-                style={{ width: "27em", height: "15em" }}
+                style={{ height: "15em" }}
                 controls
                 autoPlay
                 muted
                 loop
-                className='rounded border border-gainsboro'
+                className='rounded border border-light-gray'
+                key={img.image}
               >
                 <source
                   src={`${BASE_URL}/practice/${img.image}`}
                   type='video/mp4'
+                  key={img.image}
                 />
               </video>
             </div>
           ) : (
-            <div key={img.image}>
+            <div key={img.id}>
               <img
                 src={`${BASE_URL}/practice/${img.image}`}
                 alt={"Progresso"}
@@ -56,7 +56,7 @@ const Images = () => {
                   width: "26em",
                   height: "15em",
                 }}
-                className='rounded border border-gainsboro'
+                className='rounded border border-light-gray'
               />
             </div>
           )
