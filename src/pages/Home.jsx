@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
 import Header from "../components/Header";
 import Loading from "../components/Loading";
-import Images from "../components/Images";
-import { GoogleLogin, GoogleLogout } from "react-google-login";
+// import Images from "../components/Images";
+import jwt_decode from "jwt-decode";
 import { useDispatch, useSelector } from "react-redux";
 import { getPhrases } from "../services/axiosRequests";
-import { setUser, setLoggin } from "../Redux/reducers/userSlice";
+import { setUser, setLoggin, setToken } from "../Redux/reducers/userSlice";
 
 const Home = () => {
   const [selectedPhrase, setPhrase] = useState({ text: "", author: "" });
@@ -18,6 +18,15 @@ const Home = () => {
 
   const { logged, user } = selector;
 
+  const responseGoogle = (response) => {
+    const user = jwt_decode(response.credential);
+    dispatch(setUser(user));
+    dispatch(setToken(user.sub));
+    if (user) {
+      dispatch(setLoggin(true));
+    }
+  };
+
   useEffect(() => {
     setLoad(true);
     const phrase = async () =>
@@ -28,11 +37,21 @@ const Home = () => {
     phrase();
   }, []);
 
-  const responseGoogle = (response) => {
-    const user = response.profileObj;
-    dispatch(setUser(user));
-    if (user) dispatch(setLoggin(true));
-  };
+  useEffect(() => {
+    /* global google */
+    google.accounts.id.initialize({
+      client_id: REACT_APP_CLIENT_ID,
+      callback: responseGoogle,
+    });
+
+    google.accounts.id.renderButton(document.getElementById("signInDiv"), {
+      theme: "outline",
+      size: "large",
+    });
+    if (!logged) {
+      google.accounts.id.prompt();
+    }
+  }, []);
 
   return (
     <div>
@@ -42,7 +61,7 @@ const Home = () => {
           {logged ? (
             <div className='container-fluid mb-2 mt-1 rounded p-4'>
               <div className='text-center text-gainsboro'>
-                <h4 className='mb-4 mt-2 p-3'>Bem vindo {user.givenName}</h4>
+                <h4 className='mb-4 mt-2 p-3'>Bem vindo {user.given_name}</h4>
                 {load ? (
                   <Loading render={load} />
                 ) : (
@@ -51,26 +70,15 @@ const Home = () => {
                     <p>{selectedPhrase.author}</p>
                   </div>
                 )}
-                <GoogleLogout
-                  clientId={REACT_APP_CLIENT_ID}
-                  buttonText='Logout'
-                  onLogoutSuccess={() => window.location.reload(false)}
-                  className='m-3'
-                ></GoogleLogout>
               </div>
             </div>
           ) : (
-            <GoogleLogin
-              clientId={REACT_APP_CLIENT_ID}
-              buttonText='Login com Google'
-              onSuccess={responseGoogle}
-              onFailure={responseGoogle}
-              isSignedIn={true}
-              className='m-3'
-            />
+            <div className='mt-5 p-5'>
+              <div id='signInDiv'>Login</div>
+            </div>
           )}
         </div>
-        <Images />
+        {/* <Images /> */}
       </div>
     </div>
   );

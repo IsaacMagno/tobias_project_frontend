@@ -12,13 +12,14 @@ const RenderAllStats = () => {
   const [renderCalendar, setRenderCalendar] = useState(false);
   const [renderStats, setRenderStats] = useState([]);
   const [renderActivities, setRenderActivities] = useState([]);
-  const [token, setToken] = useState("");
+  const [tokenId, setToken] = useState("");
   const [name, setName] = useState("");
   const [ComponentRender, setComponent] = useState(<VitIncrease />);
   const navigate = useNavigate();
 
   const champions = useSelector((state) => state.champions);
   const user = useSelector((state) => state.user);
+  const { token } = user;
 
   const renderComponent = ({ value }) => {
     const componentName = renderStatsIncrease(value);
@@ -61,12 +62,12 @@ const RenderAllStats = () => {
         </div>
         <div className='card col bg-light-gray mt-2'>
           <div className='row'>
-            {user.user.googleId === token ? (
+            {token === tokenId ? (
               <>
                 <div className='col-3 mt-4'>
                   <SelectIncrease
                     renderComponent={renderComponent}
-                    token={token}
+                    token={tokenId}
                   />
                 </div>
                 <div className='col mt-4'>{ComponentRender}</div>
@@ -86,13 +87,11 @@ const RenderAllStats = () => {
             ))}
           </ul>
           <div className='col mt-5'>
-            {user.user.googleId === token ? <Practice /> : null}
+            {token === tokenId ? <Practice /> : null}
           </div>
         </div>
         <div className='col card bg-light-gray'>
-          {renderCalendar && user.user.googleId === token ? (
-            <RenderCalendar />
-          ) : null}
+          {renderCalendar && token === tokenId ? <RenderCalendar /> : null}
         </div>
       </div>
     </div>
