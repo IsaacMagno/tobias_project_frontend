@@ -11,7 +11,7 @@ const Header = () => {
           <li className='nav-item'>
             <span
               className='nav-link active text-light-gray'
-              onClick={() => navigate("/")}
+              onClick={() => navigate("/home")}
               style={{ cursor: "pointer" }}
             >
               Home

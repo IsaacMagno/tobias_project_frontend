@@ -1,30 +1,33 @@
 import React, { useState, useEffect } from "react";
-import Header from "../components/Header";
 import Loading from "../components/Loading";
-// import Images from "../components/Images";
-import jwt_decode from "jwt-decode";
-import { useDispatch, useSelector } from "react-redux";
+import NavSidebar from "../components/NavSidebar";
+import Stats from "../components/Stats";
+import Calendar from "../components/renderComponents/RenderCalendar";
+
+import AgiIncrease from "../components/statsIncrease/AgiIncrease";
+import renderStatsIncrease from "../functions/renderStatsIncrease";
+import SelectIncrease from "../components/statsIncrease/SelectIncrease";
+
+import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import { getPhrases } from "../services/axiosRequests";
-import { setUser, setLoggin, setToken } from "../Redux/reducers/userSlice";
+
+import tobiasBg from "../images/background_texture.jpg";
 
 const Home = () => {
+  const navigate = useNavigate();
+
   const [selectedPhrase, setPhrase] = useState({ text: "", author: "" });
   const [load, setLoad] = useState(false);
+  const [ComponentRender, setComponent] = useState(<AgiIncrease />);
 
-  const dispatch = useDispatch();
   const selector = useSelector((state) => state.user);
-
-  const { REACT_APP_CLIENT_ID } = process.env;
-
   const { logged, user } = selector;
 
-  const responseGoogle = (response) => {
-    const user = jwt_decode(response.credential);
-    dispatch(setUser(user));
-    dispatch(setToken(user.sub));
-    if (user) {
-      dispatch(setLoggin(true));
-    }
+  const renderComponent = (name) => {
+    const componentName = renderStatsIncrease(name);
+
+    return setComponent(componentName);
   };
 
   useEffect(() => {
@@ -37,48 +40,42 @@ const Home = () => {
     phrase();
   }, []);
 
-  useEffect(() => {
-    /* global google */
-    google.accounts.id.initialize({
-      client_id: REACT_APP_CLIENT_ID,
-      callback: responseGoogle,
-    });
-
-    google.accounts.id.renderButton(document.getElementById("signInDiv"), {
-      theme: "outline",
-      size: "large",
-    });
-    if (!logged) {
-      google.accounts.id.prompt();
-    }
-  }, []);
+  if (!logged) return navigate("/");
 
   return (
     <div>
-      <Header />
-      <div className='container-fluid '>
-        <div className='d-flex justify-content-center'>
-          {logged ? (
-            <div className='container-fluid mb-2 mt-1 rounded p-4'>
-              <div className='text-center text-gainsboro'>
-                <h4 className='mb-4 mt-2 p-3'>Bem vindo {user.given_name}</h4>
-                {load ? (
-                  <Loading render={load} />
-                ) : (
-                  <div>
-                    <p>{selectedPhrase.text}</p>
-                    <p>{selectedPhrase.author}</p>
-                  </div>
-                )}
-              </div>
+      <div
+        className='flex min-h-screen bg-cover'
+        style={{ backgroundImage: `url(${tobiasBg})`, opacity: 0.95 }}
+      >
+        <div className='grid grid-cols-7 gap-3 min-w-full'>
+          <NavSidebar />
+          <div className='text-white text-center max-w-full col-span-5'>
+            <h1 className='text-3xl font-bold mt-2 border-t p-6'>
+              Bem vindo {user.name}
+            </h1>
+            <div className='h-8'>
+              {load ? (
+                <div className='mt-10'>
+                  <Loading render={load} type={"folding-cube"} />
+                </div>
+              ) : (
+                <div className='text-md mt-10 font-extralight break-words flex justify-center px-20'>
+                  <p>{selectedPhrase.text}</p>
+                  <p>{selectedPhrase.author}</p>
+                </div>
+              )}
             </div>
-          ) : (
-            <div className='mt-5 p-5'>
-              <div id='signInDiv'>Login</div>
+            <div className='mt-12 py-20 flex justify-center items-center border-y h-96'>
+              <SelectIncrease renderComponent={renderComponent} />
+              <div className='ml-4 mt-6'>{ComponentRender}</div>
             </div>
-          )}
+            <div className='border-x my-4'>
+              <Calendar />
+            </div>
+          </div>
+          <Stats />
         </div>
-        {/* <Images /> */}
       </div>
     </div>
   );

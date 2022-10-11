@@ -1,25 +1,31 @@
 import React, { useEffect, useState } from "react";
+
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+
 import VitIncrease from "../statsIncrease/VitIncrease";
 import renderStatsIncrease from "../../functions/renderStatsIncrease";
 import SelectIncrease from "../statsIncrease/SelectIncrease";
-import cleanArray from "../../functions/cleanArray";
+
 import RenderCalendar from "./RenderCalendar";
 import Practice from "../Practice";
+
+import cleanArray from "../../functions/cleanArray";
 
 const RenderAllStats = () => {
   const [renderCalendar, setRenderCalendar] = useState(false);
   const [renderStats, setRenderStats] = useState([]);
   const [renderActivities, setRenderActivities] = useState([]);
   const [tokenId, setToken] = useState("");
-  const [name, setName] = useState("");
   const [ComponentRender, setComponent] = useState(<VitIncrease />);
   const navigate = useNavigate();
 
   const champions = useSelector((state) => state.champions);
   const user = useSelector((state) => state.user);
-  const { token } = user;
+
+  const {
+    user: { name, username },
+  } = user;
 
   const renderComponent = ({ value }) => {
     const componentName = renderStatsIncrease(value);
@@ -30,12 +36,11 @@ const RenderAllStats = () => {
     const { selectedChampion } = champions;
     if (selectedChampion.length === 0) return navigate("/champions");
     setRenderCalendar(true);
-    const { googleId, statistics, activities, name } = selectedChampion;
+    const { googleId, statistics, activities } = selectedChampion;
 
     setToken(googleId);
     setRenderStats(statistics);
     setRenderActivities(activities);
-    setName(name);
   }, [champions]);
 
   const renderStatsArray = cleanArray(Object.entries(renderStats), "stats");
@@ -62,7 +67,7 @@ const RenderAllStats = () => {
         </div>
         <div className='card col bg-light-gray mt-2'>
           <div className='row'>
-            {token === tokenId ? (
+            {name.toLowerCase() === username ? (
               <>
                 <div className='col-3 mt-4'>
                   <SelectIncrease
@@ -87,11 +92,13 @@ const RenderAllStats = () => {
             ))}
           </ul>
           <div className='col mt-5'>
-            {token === tokenId ? <Practice /> : null}
+            {name.toLowerCase() === username ? <Practice /> : null}
           </div>
         </div>
         <div className='col card bg-light-gray'>
-          {renderCalendar && token === tokenId ? <RenderCalendar /> : null}
+          {renderCalendar && name.toLowerCase() === username ? (
+            <RenderCalendar />
+          ) : null}
         </div>
       </div>
     </div>

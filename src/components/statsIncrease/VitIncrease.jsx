@@ -1,14 +1,18 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
-import { useParams } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 import { selectChampion } from "../../Redux/reducers/championsSlice";
 import statusUpdate from "./StatusUpdate";
 
 const VitIncrease = () => {
-  const { id } = useParams();
+  const {
+    user: { id },
+  } = useSelector((state) => state.user);
+
   const dispatch = useDispatch();
+
   const [meals, setMeals] = useState("");
   const [drinks, setDrinks] = useState("");
+  const [sleep, setSleep] = useState("");
 
   const aux = async (statName, stat, setStat) => {
     const champ = await statusUpdate(statName, parseInt(stat), id);
@@ -17,13 +21,12 @@ const VitIncrease = () => {
   };
 
   return (
-    <div className='container'>
-      <h4 className='text-primary'>Vitalidade</h4>
-
-      <div className='col'>
-        <div className='input-group input-group-sm mb-3'>
+    <div className='container-stats'>
+      <h4 className='h4-stats text-white/80 bg-blue-500'>Vitalidade</h4>
+      <div className=''>
+        <div className='mb-3'>
           <input
-            className='form-control-sm'
+            className='input-stats'
             id='meals-increase'
             placeholder='Refeições Saudáveis'
             type='number'
@@ -33,7 +36,7 @@ const VitIncrease = () => {
           />
 
           <button
-            className='btn btn-outline-primary btn-sm'
+            className='btn-stats bg-blue-500 hover:bg-blue-400'
             type='button'
             onClick={() => aux("meals", meals, setMeals)}
           >
@@ -42,10 +45,10 @@ const VitIncrease = () => {
         </div>
       </div>
 
-      <div className='col'>
-        <div className='input-group input-group-sm mb-3'>
+      <div className=''>
+        <div className='mb-3'>
           <input
-            className='form-control-sm'
+            className='input-stats'
             id='drinks-increase'
             placeholder='Litros de Água'
             type='number'
@@ -55,9 +58,31 @@ const VitIncrease = () => {
           />
 
           <button
-            className='btn btn-outline-primary btn-sm'
+            className='btn-stats bg-blue-500 hover:bg-blue-400'
             type='button'
             onClick={() => aux("drinks", drinks, setDrinks)}
+          >
+            Enviar
+          </button>
+        </div>
+      </div>
+
+      <div className=''>
+        <div className='mb-3'>
+          <input
+            className='input-stats'
+            id='sleep-increase'
+            placeholder='Horas de Sono'
+            type='number'
+            name='sleep'
+            value={sleep}
+            onChange={({ target }) => setSleep(target.value)}
+          />
+
+          <button
+            className='btn-stats bg-blue-500 hover:bg-blue-400'
+            type='button'
+            onClick={() => aux("sleep", sleep, setSleep)}
           >
             Enviar
           </button>

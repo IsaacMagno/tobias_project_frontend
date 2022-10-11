@@ -5,6 +5,8 @@ import { selectChampion } from "../../Redux/reducers/championsSlice";
 import { useSelector, useDispatch } from "react-redux";
 import actualChampion from "../../functions/actualChampion";
 
+import tobiasBg from "../images/tobias_bg.jpg";
+
 const RenderFiles = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -20,7 +22,10 @@ const RenderFiles = () => {
   };
 
   return (
-    <div className='container'>
+    <div
+      className='flex min-h-screen bg-cover'
+      style={{ backgroundImage: `url(${tobiasBg})`, opacity: 0.95 }}
+    >
       <div className='row'>
         {championFiles.map((file) => (
           <div className='col-4 rounded' key={file.image}>

@@ -1,11 +1,13 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
-import { useParams } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 import { selectChampion } from "../../Redux/reducers/championsSlice";
 import statusUpdate from "./StatusUpdate";
 
 const IntIncrease = () => {
-  const { id } = useParams();
+  const {
+    user: { id },
+  } = useSelector((state) => state.user);
+
   const dispatch = useDispatch();
 
   const [study, setStudy] = useState("");
@@ -18,13 +20,13 @@ const IntIncrease = () => {
     setStat("");
   };
   return (
-    <div className='container'>
-      <h4 className='text-red'>Inteligência</h4>
+    <div className='container-stats'>
+      <h4 className='h4-stats text-white/80 bg-red-600'>Inteligência</h4>
 
-      <div className='col'>
-        <div className='input-group input-group-sm mb-3'>
+      <div className=''>
+        <div className='mb-3'>
           <input
-            className='form-control-sm'
+            className='input-stats'
             id='study-increase'
             placeholder='Horas de Estudo'
             type='number'
@@ -34,7 +36,7 @@ const IntIncrease = () => {
           />
 
           <button
-            className='btn btn-outline-red btn-sm'
+            className='btn-stats bg-red-600 hover:bg-red-500'
             type='button'
             onClick={() => aux("study", study, setStudy)}
           >
@@ -43,10 +45,10 @@ const IntIncrease = () => {
         </div>
       </div>
 
-      <div className='col'>
-        <div className='input-group input-group-sm mb-3'>
+      <div className=''>
+        <div className='mb-3'>
           <input
-            className='form-control-sm'
+            className='input-stats'
             id='reading-increase'
             placeholder='Horas de Leitura'
             type='number'
@@ -56,7 +58,7 @@ const IntIncrease = () => {
           />
 
           <button
-            className='btn btn-outline-red btn-sm'
+            className='btn-stats bg-red-600 hover:bg-red-500'
             type='button'
             onClick={() => aux("reading", reading, setReading)}
           >
@@ -65,10 +67,10 @@ const IntIncrease = () => {
         </div>
       </div>
 
-      <div className='col'>
-        <div className='input-group input-group-sm mb-3'>
+      <div className=''>
+        <div className='mb-3'>
           <input
-            className='form-control-sm'
+            className='input-stats'
             id='meditation-increase'
             placeholder='Horas de Meditação'
             type='number'
@@ -78,7 +80,7 @@ const IntIncrease = () => {
           />
 
           <button
-            className='btn btn-outline-red btn-sm'
+            className='btn-stats bg-red-600 hover:bg-red-500'
             type='button'
             onClick={() => aux("meditation", meditation, setMeditation)}
           >

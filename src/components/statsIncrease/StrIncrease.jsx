@@ -1,12 +1,15 @@
 import React, { useState } from "react";
-import { useParams } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { selectChampion } from "../../Redux/reducers/championsSlice";
 import statusUpdate from "./StatusUpdate";
 
 const StrIncrease = () => {
-  const { id } = useParams();
+  const {
+    user: { id },
+  } = useSelector((state) => state.user);
+
   const dispatch = useDispatch();
+
   const [abs, setAbs] = useState("");
   const [upperLimb, setUpperLimb] = useState("");
   const [lowerLimb, setLowerLimb] = useState("");
@@ -18,13 +21,13 @@ const StrIncrease = () => {
   };
 
   return (
-    <div className='container'>
-      <h4 className='text-honey-yellow'>Força</h4>
+    <div className='container-stats'>
+      <h4 className='h4-stats text-black/50 bg-yellow-400'>Força</h4>
 
-      <div className='col'>
-        <div className='input-group input-group-sm mb-3'>
+      <div className=''>
+        <div className='mb-3'>
           <input
-            className='form-control-sm'
+            className='input-stats'
             id='upperLimb-increase'
             placeholder='Membros Superiores'
             type='number'
@@ -34,7 +37,7 @@ const StrIncrease = () => {
           />
 
           <button
-            className='btn btn-outline-honey-yellow btn-sm'
+            className='btn-stats bg-yellow-400 hover:bg-yellow-300 text-black/50'
             type='button'
             onClick={() => aux("upperLimb", upperLimb, setUpperLimb)}
           >
@@ -43,10 +46,10 @@ const StrIncrease = () => {
         </div>
       </div>
 
-      <div className='col'>
-        <div className='input-group input-group-sm mb-3'>
+      <div className=''>
+        <div className='mb-3'>
           <input
-            className='form-control-sm'
+            className='input-stats'
             id='abs-increase'
             placeholder='Abdominais'
             type='number'
@@ -56,7 +59,7 @@ const StrIncrease = () => {
           />
 
           <button
-            className='btn btn-outline-honey-yellow btn-sm'
+            className='btn-stats bg-yellow-400 hover:bg-yellow-300 text-black/50'
             type='button'
             onClick={() => aux("abs", abs, setAbs)}
           >
@@ -65,10 +68,10 @@ const StrIncrease = () => {
         </div>
       </div>
 
-      <div className='col'>
-        <div className='input-group input-group-sm mb-3'>
+      <div className=''>
+        <div className='mb-3'>
           <input
-            className='form-control-sm'
+            className='input-stats'
             id='lowerLimb-increase'
             placeholder='Membros Inferiores'
             type='number'
@@ -78,7 +81,7 @@ const StrIncrease = () => {
           />
 
           <button
-            className='btn btn-outline-honey-yellow btn-sm'
+            className='btn-stats bg-yellow-400 hover:bg-yellow-300 text-black/50'
             type='button'
             onClick={() => aux("lowerLimb", lowerLimb, setLowerLimb)}
           >

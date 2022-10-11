@@ -1,11 +1,13 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
-import { useParams } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 import { selectChampion } from "../../Redux/reducers/championsSlice";
 import statusUpdate from "./StatusUpdate";
 
 const AgiIncrease = () => {
-  const { id } = useParams();
+  const {
+    user: { id },
+  } = useSelector((state) => state.user);
+
   const dispatch = useDispatch();
 
   const [race, setRace] = useState("");
@@ -19,13 +21,13 @@ const AgiIncrease = () => {
   };
 
   return (
-    <div className='container'>
-      <h4 className='text-green'>Agilidade</h4>
+    <div className='container-stats'>
+      <h4 className='h4-stats text-white/80 bg-green-600'>Agilidade</h4>
 
-      <div className='col'>
-        <div className='input-group input-group-sm mb-3'>
+      <div className=''>
+        <div className='mb-3'>
           <input
-            className='form-control-sm'
+            className='input-stats'
             id='agility-increase-run'
             placeholder='Km Corridos'
             type='number'
@@ -35,7 +37,7 @@ const AgiIncrease = () => {
           />
 
           <button
-            className='btn btn-outline-green btn-sm'
+            className='btn-stats bg-green-600 hover:bg-green-500'
             type='button'
             onClick={() => aux("kmRun", race, setRace)}
           >
@@ -44,10 +46,10 @@ const AgiIncrease = () => {
         </div>
       </div>
 
-      <div className='col'>
-        <div className='input-group input-group-sm mb-3'>
+      <div className=''>
+        <div className='mb-3'>
           <input
-            className='form-control-sm'
+            className='input-stats'
             id='agility-increase-jump'
             placeholder='Saltos de Corda'
             type='number'
@@ -57,7 +59,7 @@ const AgiIncrease = () => {
           />
 
           <button
-            className='btn btn-outline-green btn-sm'
+            className='btn-stats bg-green-600 hover:bg-green-500'
             type='button'
             onClick={() => aux("jumpRope", rope, setRope)}
           >
@@ -66,10 +68,10 @@ const AgiIncrease = () => {
         </div>
       </div>
 
-      <div className='col'>
-        <div className='input-group input-group-sm mb-3'>
+      <div className=''>
+        <div className='mb-3'>
           <input
-            className='form-control-sm'
+            className='input-stats'
             id='agility-increase-bike'
             placeholder='Km Pedalados'
             type='number'
@@ -79,7 +81,7 @@ const AgiIncrease = () => {
           />
 
           <button
-            className='btn btn-outline-green btn-sm'
+            className='btn-stats bg-green-600 hover:bg-green-500'
             type='button'
             onClick={() => aux("kmBike", bike, setBike)}
           >

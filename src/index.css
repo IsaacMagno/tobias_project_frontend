@@ -1,0 +1,54 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+::-webkit-scrollbar {
+  display: none;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+.fc-daygrid-day {
+  cursor: pointer;
+}
+
+.nav-btn {
+  @apply px-10 p-5 text-gray-900 rounded-r hover:bg-gray-100 hover:cursor-pointer hover:opacity-90 flex items-center;
+}
+
+.btn-stats {
+  @apply p-2 rounded-lg ml-2 shadow-sm hover:shadow-inner shadow-black;
+}
+
+.btn-select {
+  @apply w-10 h-10 rounded-md my-1 shadow-sm hover:shadow-inner shadow-black;
+}
+
+.btn-calendar {
+  @apply w-6 h-6 rounded-full mx-1 shadow-md shadow-black/50;
+}
+
+.input-stats {
+  @apply bg-transparent border rounded-xl px-3 py-2;
+}
+
+.h4-stats {
+  @apply font-semibold mb-2 rounded hover:cursor-default shadow-sm shadow-black;
+}
+
+.container-stats {
+  @apply flex flex-col w-80;
+}
+
+.champ-img {
+  @apply ml-1 w-96 rounded shadow-2xl shadow-black cursor-pointer grayscale contrast-100 brightness-50 hover:invert;
+}

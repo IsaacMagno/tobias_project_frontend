@@ -6,17 +6,16 @@ import daydgridPlugin from "@fullcalendar/daygrid";
 import interactionPlugin from "@fullcalendar/interaction";
 import bootstrap5Plugin from "@fullcalendar/bootstrap5";
 
-const renderCalendar = () => {
+const RenderCalendar = () => {
   const [color, selectColor] = useState("green");
   const [events, setEvents] = useState();
-  const champions = useSelector((state) => state.champions);
+
+  const { user } = useSelector((state) => state.user);
 
   useEffect(() => {
     const {
-      selectedChampion: {
-        calendars: { events },
-      },
-    } = champions;
+      calendars: { events },
+    } = user;
 
     const filteredEvents = events.map((ev) => {
       const eventObj = {
@@ -29,12 +28,10 @@ const renderCalendar = () => {
     });
 
     setEvents(filteredEvents);
-  }, [champions]);
+  }, [user]);
 
   const handleDateClick = async (dateClickInfo) => {
-    const {
-      selectedChampion: { id },
-    } = champions;
+    const { id } = user;
 
     const calendarApi = dateClickInfo.view.calendar;
 
@@ -51,33 +48,35 @@ const renderCalendar = () => {
   };
 
   return events ? (
-    <div>
-      <div className='d-flex justify-content-center mt-4'>
+    <div className='flex flex-col justify-center p-2'>
+      <div className='m-auto my-4'>
         <button
           type='button'
-          className='btn btn-green btn-circle btn-xl m-1'
+          className='btn-calendar bg-green-600 hover:bg-green-500'
           onClick={() => selectColor("green")}
         />
         <button
           type='button'
-          className='btn btn-warning btn-circle btn-xl m-1'
+          className='btn-calendar bg-yellow-400 hover:bg-yellow-200'
           onClick={() => selectColor("yellow")}
         />
         <button
           type='button'
-          className='btn btn-red btn-circle btn-xl m-1'
+          className='btn-calendar bg-red-600 hover:bg-red-500'
           onClick={() => selectColor("red")}
         />
       </div>
-      <FullCalendar
-        plugins={[daydgridPlugin, interactionPlugin, bootstrap5Plugin]}
-        locale='pt-br'
-        dateClick={handleDateClick}
-        // themeSystem='bootstrap5'
-        events={events}
-      />
+      <div className='w-1/2 m-auto'>
+        <FullCalendar
+          plugins={[daydgridPlugin, interactionPlugin, bootstrap5Plugin]}
+          locale='pt-br'
+          dateClick={handleDateClick}
+          height={525}
+          events={events}
+        />
+      </div>
     </div>
   ) : null;
 };
 
-export default renderCalendar;
+export default RenderCalendar;

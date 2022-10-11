@@ -15,6 +15,7 @@ const activities = {
   lowerLimb: "Treino Inferior",
   meals: "Refeições Saudáveis",
   drinks: "Litros de Água",
+  sleep: "Horas de Sono",
   study: "Horas Estudando",
   meditation: "Horas Meditando",
   reading: "Horas Lendo",
