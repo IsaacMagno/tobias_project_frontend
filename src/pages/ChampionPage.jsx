@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 import { BASE_URL } from "../services/axiosRequests";
 
@@ -8,21 +8,18 @@ import Stats from "../components/Stats";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
-import tobiasBg from "../images/background_texture.jpg";
-
 const ChampionPage = () => {
   const navigate = useNavigate();
 
   const champions = useSelector((state) => state.champions);
   const { selectedChampion } = champions;
 
-  if (selectedChampion.length === 0) return navigate("/champions");
+  useEffect(() => {
+    if (selectedChampion.length === 0) return navigate("/champions");
+  }, [selectedChampion]);
 
   return (
-    <div
-      className='flex min-h-screen bg-cover flex-none'
-      style={{ backgroundImage: `url(${tobiasBg})`, opacity: 0.95 }}
-    >
+    <div className='bg-hero flex min-h-screen flex-none bg-no-repeat bg-cover bg-center bg-fixed opacity-95'>
       <div className='grid grid-cols-7 gap-3'>
         <NavSideBar />
         <div className='col-span-5 grid-rows-2'>

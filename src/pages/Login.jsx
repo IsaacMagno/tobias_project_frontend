@@ -5,9 +5,6 @@ import { useAlert } from "react-alert";
 import { setUser, setLoggin } from "../Redux/reducers/userSlice.js";
 import { selectChampion } from "../Redux/reducers/championsSlice";
 
-import tobiasVintage from "../images/tobias_vintage.jpg";
-import backgroundTexture from "../images/background_texture.jpg";
-
 const Login = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -27,7 +24,9 @@ const Login = () => {
     event.preventDefault();
 
     if (userLogin && userPassword) {
-      const user = champions.filter((champ) => champ.username === userLogin);
+      const user = champions.filter(
+        (champ) => champ.username.toLowerCase() === userLogin.toLowerCase()
+      );
 
       if (user[0].password === userPassword) {
         dispatch(setUser(user[0]));
@@ -41,16 +40,10 @@ const Login = () => {
   };
 
   return (
-    <div
-      className='flex items-center justify-center min-h-screen bg-cover'
-      style={{ backgroundImage: `url(${backgroundTexture})` }}
-    >
+    <div className='bg-hero flex items-center justify-center min-h-screen bg-no-repeat bg-cover bg-center bg-fixed opacity-95'>
       <div>
         <div className='max-w-sm w-full lg:max-w-full lg:flex'>
-          <div
-            className='h-48 lg:h-auto lg:w-48 flex-none bg-cover rounded-t lg:rounded-t-none lg:rounded-l text-center overflow-hidden'
-            style={{ backgroundImage: `url(${tobiasVintage})` }}
-          ></div>
+          <div className='bg-tobs h-48 lg:h-auto lg:w-48 flex-none rounded-t lg:rounded-t-none lg:rounded-l text-center overflow-hidden bg-no-repeat bg-cover'></div>
 
           <div className='border-r border-b border-l lg:border-l-0 lg:border-t  bg-white rounded-b lg:rounded-b-none lg:rounded-r p-8 flex flex-col justify-between leading-normal'>
             <form

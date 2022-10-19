@@ -3,16 +3,11 @@ import { useNavigate } from "react-router-dom";
 import { ReactComponent as StartIcon } from "../images/tower-svgrepo-com.svg";
 import { ReactComponent as ChampionsIcon } from "../images/battle-svgrepo-com.svg";
 
-import grayBg from "../images/bg_gray.jpg";
-
 const NavSidebar = () => {
   const navigate = useNavigate();
 
   return (
-    <div
-      className='flex h-screen sticky top-0 items-center bg-cover rounded-r shadow-inner shadow-black/50'
-      style={{ backgroundImage: `url(${grayBg})`, opacity: 0.6 }}
-    >
+    <div className='flex h-screen sticky top-0 items-center border-r'>
       <ul className='list-none space-y-2 '>
         <li
           className='nav-btn hover:shadow-inner hover:shadow-black/20'

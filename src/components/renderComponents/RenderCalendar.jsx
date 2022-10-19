@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from "react";
+
 import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import { addEvent } from "../../services/axiosRequests";
+
 import FullCalendar from "@fullcalendar/react";
 import daydgridPlugin from "@fullcalendar/daygrid";
 import interactionPlugin from "@fullcalendar/interaction";
@@ -10,9 +13,12 @@ const RenderCalendar = () => {
   const [color, selectColor] = useState("green");
   const [events, setEvents] = useState();
 
-  const { user } = useSelector((state) => state.user);
+  const navigate = useNavigate();
+
+  const { user, logged } = useSelector((state) => state.user);
 
   useEffect(() => {
+    if (!logged) return navigate("/");
     const {
       calendars: { events },
     } = user;

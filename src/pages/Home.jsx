@@ -8,20 +8,21 @@ import AgiIncrease from "../components/statsIncrease/AgiIncrease";
 import renderStatsIncrease from "../functions/renderStatsIncrease";
 import SelectIncrease from "../components/statsIncrease/SelectIncrease";
 
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { getPhrases } from "../services/axiosRequests";
-
-import tobiasBg from "../images/background_texture.jpg";
+import { selectChampion } from "../Redux/reducers/championsSlice";
 
 const Home = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const [selectedPhrase, setPhrase] = useState({ text: "", author: "" });
   const [load, setLoad] = useState(false);
   const [ComponentRender, setComponent] = useState(<AgiIncrease />);
 
   const selector = useSelector((state) => state.user);
+  const { selectedChampion } = useSelector((state) => state.champions);
   const { logged, user } = selector;
 
   const renderComponent = (name) => {
@@ -31,6 +32,12 @@ const Home = () => {
   };
 
   useEffect(() => {
+    if (!logged) return navigate("/");
+
+    if (user != selectedChampion) {
+      dispatch(selectChampion(user));
+    }
+
     setLoad(true);
     const phrase = async () =>
       await getPhrases()
@@ -38,16 +45,11 @@ const Home = () => {
         .then(() => setLoad(false));
 
     phrase();
-  }, []);
-
-  if (!logged) return navigate("/");
+  }, [logged]);
 
   return (
     <div>
-      <div
-        className='flex min-h-screen bg-cover'
-        style={{ backgroundImage: `url(${tobiasBg})`, opacity: 0.95 }}
-      >
+      <div className='bg-hero flex min-h-screen bg-no-repeat bg-cover bg-center bg-fixed opacity-95'>
         <div className='grid grid-cols-7 gap-3 min-w-full'>
           <NavSidebar />
           <div className='text-white text-center max-w-full col-span-5'>
@@ -70,7 +72,7 @@ const Home = () => {
               <SelectIncrease renderComponent={renderComponent} />
               <div className='ml-4 mt-6'>{ComponentRender}</div>
             </div>
-            <div className='border-x my-4'>
+            <div className='my-4'>
               <Calendar />
             </div>
           </div>

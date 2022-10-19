@@ -8,8 +8,6 @@ import { selectChampion } from "../Redux/reducers/championsSlice";
 import { useSelector, useDispatch } from "react-redux";
 import actualChampion from "../functions/actualChampion";
 
-import tobiasBg from "../images/background_texture.jpg";
-
 const ChampionSelect = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -25,10 +23,7 @@ const ChampionSelect = () => {
   };
 
   return (
-    <div
-      className='flex min-h-screen bg-cover flex-none'
-      style={{ backgroundImage: `url(${tobiasBg})`, opacity: 0.95 }}
-    >
+    <div className='bg-hero flex min-h-screen flex-none bg-no-repeat bg-cover bg-center bg-fixed opacity-95'>
       <div className='grid lg:grid-cols-7 gap-3 items-center'>
         <NavSidebar />
         {championFiles.map((file) => (
