@@ -14,6 +14,15 @@ const StrIncrease = () => {
   const [upperLimb, setUpperLimb] = useState("");
   const [lowerLimb, setLowerLimb] = useState("");
 
+  const handleChange = (value, min, max, inpState) => {
+    const validateValue = Math.max(
+      Number(min),
+      Math.min(Number(max), Number(value))
+    );
+
+    inpState(validateValue);
+  };
+
   const aux = async (statName, stat, setStat) => {
     const champ = await statusUpdate(statName, parseInt(stat), id);
     dispatch(selectChampion(champ));
@@ -33,7 +42,9 @@ const StrIncrease = () => {
             type='number'
             name='upperLimb'
             value={upperLimb}
-            onChange={({ target }) => setUpperLimb(target.value)}
+            onChange={({ target: { value } }) =>
+              handleChange(value, 0, 450, setUpperLimb)
+            }
           />
 
           <button
@@ -55,7 +66,9 @@ const StrIncrease = () => {
             type='number'
             name='abs'
             value={abs}
-            onChange={({ target }) => setAbs(target.value)}
+            onChange={({ target: { value } }) =>
+              handleChange(value, 0, 450, setAbs)
+            }
           />
 
           <button
@@ -77,7 +90,9 @@ const StrIncrease = () => {
             type='number'
             name='lowerLimb'
             value={lowerLimb}
-            onChange={({ target }) => setLowerLimb(target.value)}
+            onChange={({ target: { value } }) =>
+              handleChange(value, 0, 450, setLowerLimb)
+            }
           />
 
           <button

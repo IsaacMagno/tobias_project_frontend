@@ -27,6 +27,14 @@ export const addEvent = async (newEvent, id) => {
   return event;
 };
 
+export const removeEvent = async (eventDate, id) => {
+  const event = await axios.delete(`${BASE_URL}/calendars/${id}`, {
+    data: eventDate,
+  });
+
+  return event;
+};
+
 export const getPractices = async (id) => {
   const AllPractices = await axios.get(`${BASE_URL}/practice/${id}`);
 

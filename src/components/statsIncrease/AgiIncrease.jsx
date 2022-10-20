@@ -14,6 +14,15 @@ const AgiIncrease = () => {
   const [rope, setRope] = useState("");
   const [bike, setBike] = useState("");
 
+  const handleChange = (value, min, max, inpState) => {
+    const validateValue = Math.max(
+      Number(min),
+      Math.min(Number(max), Number(value))
+    );
+
+    inpState(validateValue);
+  };
+
   const aux = async (statName, stat, setStat) => {
     const champ = await statusUpdate(statName, parseInt(stat), id);
     dispatch(selectChampion(champ));
@@ -33,7 +42,9 @@ const AgiIncrease = () => {
             type='number'
             name='kmRun'
             value={race}
-            onChange={({ target }) => setRace(target.value)}
+            onChange={({ target: { value } }) =>
+              handleChange(value, 0, 20, setRace)
+            }
           />
 
           <button
@@ -55,7 +66,9 @@ const AgiIncrease = () => {
             type='number'
             name='jumpRope'
             value={rope}
-            onChange={({ target }) => setRope(target.value)}
+            onChange={({ target: { value } }) =>
+              handleChange(value, 0, 500, setRope)
+            }
           />
 
           <button
@@ -77,7 +90,10 @@ const AgiIncrease = () => {
             type='number'
             name='kmBike'
             value={bike}
-            onChange={({ target }) => setBike(target.value)}
+            min={0}
+            onChange={({ target: { value } }) =>
+              handleChange(value, 0, 20, setBike)
+            }
           />
 
           <button

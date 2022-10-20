@@ -22,7 +22,7 @@ const Home = () => {
   const [ComponentRender, setComponent] = useState(<AgiIncrease />);
 
   const selector = useSelector((state) => state.user);
-  const { selectedChampion } = useSelector((state) => state.champions);
+  const champions = useSelector((state) => state.champions);
   const { logged, user } = selector;
 
   const renderComponent = (name) => {
@@ -34,7 +34,7 @@ const Home = () => {
   useEffect(() => {
     if (!logged) return navigate("/");
 
-    if (user != selectedChampion) {
+    if (user != champions.selectedChampion) {
       dispatch(selectChampion(user));
     }
 
@@ -62,9 +62,9 @@ const Home = () => {
                   <Loading render={load} type={"folding-cube"} />
                 </div>
               ) : (
-                <div className='text-md mt-10 font-extralight break-words flex justify-center px-20'>
+                <div className='mt-10 font-extralight break-words flex flex-col justify-center px-20'>
                   <p>{selectedPhrase.text}</p>
-                  <p>{selectedPhrase.author}</p>
+                  <p className='text-sm mt-1'>{selectedPhrase.author}</p>
                 </div>
               )}
             </div>

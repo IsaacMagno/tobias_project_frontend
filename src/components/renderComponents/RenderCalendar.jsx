@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from "react";
 
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { addEvent } from "../../services/axiosRequests";
+import { setChampions } from "../../Redux/reducers/championsSlice";
+import { setUser } from "../../Redux/reducers/userSlice";
+import { addEvent, removeEvent, getStats } from "../../services/axiosRequests";
 
 import FullCalendar from "@fullcalendar/react";
 import daydgridPlugin from "@fullcalendar/daygrid";
@@ -14,11 +16,20 @@ const RenderCalendar = () => {
   const [events, setEvents] = useState();
 
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
+  const champions = useSelector((state) => state.champions);
   const { user, logged } = useSelector((state) => state.user);
 
   useEffect(() => {
     if (!logged) return navigate("/");
+
+    const userAtt = champions.champions.filter(
+      (champ) => champ.username.toLowerCase() === user.name.toLowerCase()
+    );
+
+    dispatch(setUser(userAtt[0]));
+
     const {
       calendars: { events },
     } = user;
@@ -41,16 +52,31 @@ const RenderCalendar = () => {
 
     const calendarApi = dateClickInfo.view.calendar;
 
-    const newEvent = {
-      title: "",
-      date: dateClickInfo.dateStr,
-      display: "background",
-      backgroundColor: color,
-    };
+    const allEvents = calendarApi.getEvents();
 
-    calendarApi.addEvent(newEvent);
+    const eventExists = allEvents.filter(
+      (day) => day.startStr === dateClickInfo.dateStr
+    );
 
-    return await addEvent(newEvent, id);
+    if (eventExists.length) {
+      eventExists[0].remove();
+      var date = {
+        date: dateClickInfo.dateStr,
+      };
+      await removeEvent(date, id);
+    } else {
+      var newEvent = {
+        title: "",
+        date: dateClickInfo.dateStr,
+        display: "background",
+        backgroundColor: color,
+      };
+
+      calendarApi.addEvent(newEvent);
+      await addEvent(newEvent, id);
+    }
+
+    await getStats().then((o) => dispatch(setChampions(o)));
   };
 
   return events ? (

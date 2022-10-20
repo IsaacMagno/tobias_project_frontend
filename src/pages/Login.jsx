@@ -23,11 +23,13 @@ const Login = () => {
   const doLogin = (event) => {
     event.preventDefault();
 
-    if (userLogin && userPassword) {
-      const user = champions.filter(
-        (champ) => champ.username.toLowerCase() === userLogin.toLowerCase()
-      );
+    const user = champions.filter(
+      (champ) => champ.username.toLowerCase() === userLogin.toLowerCase()
+    );
 
+    if (!user.length) return alert.show("Usuario ou senha invalidos!");
+
+    if (userLogin && userPassword) {
       if (user[0].password === userPassword) {
         dispatch(setUser(user[0]));
         dispatch(selectChampion(user[0]));
@@ -52,7 +54,7 @@ const Login = () => {
             >
               <div className='mb-2 mt-10'>
                 <input
-                  className='shadow appearance-none border rounded w-full py-2 px-3 bg-neutral-800 text-white leading-tight focus:outline-none focus:shadow-outline'
+                  className='input-login'
                   id='username'
                   type='text'
                   placeholder='Username'
@@ -62,7 +64,7 @@ const Login = () => {
 
               <div className='mb-4'>
                 <input
-                  className='shadow appearance-none border rounded w-full py-2 px-3 bg-neutral-800 text-white mb-3 leading-tight focus:outline-none focus:shadow-outline'
+                  className='input-login mb-3'
                   id='password'
                   type='password'
                   placeholder='Password'
@@ -72,7 +74,7 @@ const Login = () => {
 
               <div className='flex items-center justify-center'>
                 <button
-                  className='bg-neutral-700 hover:bg-neutral-900 text-white font-bold py-2 px-32 rounded focus:outline-none focus:shadow-outline'
+                  className='bg-neutral-700 hover:bg-neutral-900 text-white font-bold py-2 px-32 rounded outline-none'
                   type='submit'
                 >
                   Entrar

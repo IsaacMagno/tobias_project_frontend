@@ -14,6 +14,15 @@ const VitIncrease = () => {
   const [drinks, setDrinks] = useState("");
   const [sleep, setSleep] = useState("");
 
+  const handleChange = (value, min, max, inpState) => {
+    const validateValue = Math.max(
+      Number(min),
+      Math.min(Number(max), Number(value))
+    );
+
+    inpState(validateValue);
+  };
+
   const aux = async (statName, stat, setStat) => {
     const champ = await statusUpdate(statName, parseInt(stat), id);
     dispatch(selectChampion(champ));
@@ -32,7 +41,9 @@ const VitIncrease = () => {
             type='number'
             name='meals'
             value={meals}
-            onChange={({ target }) => setMeals(target.value)}
+            onChange={({ target: { value } }) =>
+              handleChange(value, 0, 8, setMeals)
+            }
           />
 
           <button
@@ -54,7 +65,9 @@ const VitIncrease = () => {
             type='number'
             name='drinks'
             value={drinks}
-            onChange={({ target }) => setDrinks(target.value)}
+            onChange={({ target: { value } }) =>
+              handleChange(value, 0, 5, setDrinks)
+            }
           />
 
           <button
@@ -76,7 +89,9 @@ const VitIncrease = () => {
             type='number'
             name='sleep'
             value={sleep}
-            onChange={({ target }) => setSleep(target.value)}
+            onChange={({ target: { value } }) =>
+              handleChange(value, 0, 12, setSleep)
+            }
           />
 
           <button

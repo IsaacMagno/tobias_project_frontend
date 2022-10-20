@@ -14,11 +14,21 @@ const IntIncrease = () => {
   const [reading, setReading] = useState("");
   const [meditation, setMeditation] = useState("");
 
+  const handleChange = (value, min, max, inpState) => {
+    const validateValue = Math.max(
+      Number(min),
+      Math.min(Number(max), Number(value))
+    );
+
+    inpState(validateValue);
+  };
+
   const aux = async (statName, stat, setStat) => {
     const champ = await statusUpdate(statName, parseInt(stat), id);
     dispatch(selectChampion(champ));
     setStat("");
   };
+
   return (
     <div className='container-stats'>
       <h4 className='h4-stats text-white/80 bg-red-600'>Inteligência</h4>
@@ -32,7 +42,9 @@ const IntIncrease = () => {
             type='number'
             name='study'
             value={study}
-            onChange={({ target }) => setStudy(target.value)}
+            onChange={({ target: { value } }) =>
+              handleChange(value, 0, 15, setStudy)
+            }
           />
 
           <button
@@ -54,7 +66,9 @@ const IntIncrease = () => {
             type='number'
             name='reading'
             value={reading}
-            onChange={({ target }) => setReading(target.value)}
+            onChange={({ target: { value } }) =>
+              handleChange(value, 0, 5, setReading)
+            }
           />
 
           <button
@@ -76,7 +90,9 @@ const IntIncrease = () => {
             type='number'
             name='meditation'
             value={meditation}
-            onChange={({ target }) => setMeditation(target.value)}
+            onChange={({ target: { value } }) =>
+              handleChange(value, 0, 5, setMeditation)
+            }
           />
 
           <button
