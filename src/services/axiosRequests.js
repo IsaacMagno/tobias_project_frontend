@@ -1,6 +1,6 @@
 import axios from "axios";
 
-export const BASE_URL = "https://tobias-project-db.herokuapp.com";
+export const BASE_URL = "https://tobiasproject-api.onrender.com";
 // export const BASE_URL = "http://localhost:3003";
 
 export const getFiles = async () => {
