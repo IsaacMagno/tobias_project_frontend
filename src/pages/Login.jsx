@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { useAlert } from "react-alert";
+import { championLogin } from "../services/axiosRequests";
 import { setUser, setLoggin } from "../Redux/reducers/userSlice.js";
 import { selectChampion } from "../Redux/reducers/championsSlice";
 
@@ -10,27 +11,29 @@ const Login = () => {
   const dispatch = useDispatch();
   const alert = useAlert();
 
-  const [userLogin, setUserLogin] = useState();
-  const [userPassword, setUserPassword] = useState();
+  const [username, setUsername] = useState();
+  const [password, setPassword] = useState();
 
   const { champions } = useSelector((state) => state.champions);
   const { logged } = useSelector((state) => state.user);
 
-  useEffect(() => {
-    if (logged) return navigate("/home");
-  }, []);
+  // useEffect(() => {
+  //   if (logged) return navigate("/home");
+  // }, []);
 
-  const doLogin = (event) => {
+  const doLogin = async (event) => {
     event.preventDefault();
 
     const user = champions.filter(
-      (champ) => champ.username.toLowerCase() === userLogin.toLowerCase()
+      (champ) => champ.username.toLowerCase() === username.toLowerCase()
     );
 
     if (!user.length) return alert.show("Usuario ou senha invalidos!");
 
-    if (userLogin && userPassword) {
-      if (user[0].password === userPassword) {
+    if (username && password) {
+      const { validLogin } = await championLogin({ username, password });
+
+      if (validLogin) {
         dispatch(setUser(user[0]));
         dispatch(selectChampion(user[0]));
         dispatch(setLoggin(true));
@@ -58,7 +61,7 @@ const Login = () => {
                   id='username'
                   type='text'
                   placeholder='Username'
-                  onChange={({ target }) => setUserLogin(target.value)}
+                  onChange={({ target }) => setUsername(target.value)}
                 />
               </div>
 
@@ -68,7 +71,7 @@ const Login = () => {
                   id='password'
                   type='password'
                   placeholder='Password'
-                  onChange={({ target }) => setUserPassword(target.value)}
+                  onChange={({ target }) => setPassword(target.value)}
                 />
               </div>
 

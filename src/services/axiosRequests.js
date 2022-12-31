@@ -1,7 +1,7 @@
 import axios from "axios";
 
-export const BASE_URL = "https://tobiasproject-api.onrender.com";
-// export const BASE_URL = "http://localhost:3003";
+// export const BASE_URL = "https://tobiasproject-api.onrender.com";
+export const BASE_URL = "http://localhost:3003";
 
 export const getFiles = async () => {
   const allFiles = await axios.get(`${BASE_URL}/uploads`).then((o) => o.data);
@@ -47,4 +47,14 @@ export const newPractice = async (config, formData, id) => {
     .then((o) => o.data);
 
   return createPractice;
+};
+
+export const championLogin = async (championData) => {
+  console.log(championData);
+
+  const isValid = await axios
+    .post(`${BASE_URL}/champion-login`, championData)
+    .then((o) => o.data);
+
+  return isValid;
 };
