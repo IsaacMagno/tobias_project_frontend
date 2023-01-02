@@ -2,6 +2,7 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import { ReactComponent as StartIcon } from "../images/tower-svgrepo-com.svg";
 import { ReactComponent as ChampionsIcon } from "../images/battle-svgrepo-com.svg";
+import { ReactComponent as TaskIcon } from "../images/trend-svgrepo-com.svg";
 
 const NavSidebar = () => {
   const navigate = useNavigate();
@@ -22,6 +23,13 @@ const NavSidebar = () => {
         >
           <ChampionsIcon />
           <p className='font-semibold ml-2'>Campeões</p>
+        </li>
+        <li
+          className='nav-btn hover:shadow-inner hover:shadow-black/20'
+          onClick={() => navigate("/task")}
+        >
+          <TaskIcon className='w-10 h-10' />
+          <p className='font-semibold ml-2'>Metas</p>
         </li>
       </ul>
     </div>

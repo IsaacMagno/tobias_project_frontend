@@ -56,3 +56,29 @@ export const championLogin = async (championData) => {
 
   return isValid;
 };
+
+export const createTask = async (taskData) => {
+  const taskCreated = await axios
+    .post(`${BASE_URL}/task`, taskData)
+    .then((o) => o.data);
+
+  return taskCreated;
+};
+
+export const readTask = async (id) => {
+  const task = await axios.get(`${BASE_URL}/task/${id}`).then((o) => o.data);
+
+  return task;
+};
+
+export const updateTask = async (id, taskData) => {
+  const task = await axios
+    .put(`${BASE_URL}/task/${id}`, taskData)
+    .then((o) => o.data);
+
+  return task;
+};
+
+export const deleteTask = async (id) => {
+  await axios.delete(`${BASE_URL}/${id}`);
+};
