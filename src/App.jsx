@@ -1,9 +1,6 @@
 import React, { useEffect } from "react";
 import { Route, Routes } from "react-router-dom";
 import ReactGA from "react-ga";
-const TRACKING_ID = "UA-263504160-1";
-
-ReactGA.initialize(TRACKING_ID);
 
 import Home from "./pages/Home";
 import Login from "./pages/Login";
@@ -19,6 +16,9 @@ import "../src/index.css";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+
+const TRACKING_ID = "UA-263504160-1";
+ReactGA.initialize(TRACKING_ID);
 
 const App = () => {
   const dispatch = useDispatch();
