@@ -1,5 +1,9 @@
 import React, { useEffect } from "react";
 import { Route, Routes } from "react-router-dom";
+import ReactGA from "react-ga";
+const TRACKING_ID = "UA-263504160-1";
+
+ReactGA.initialize(TRACKING_ID);
 
 import Home from "./pages/Home";
 import Login from "./pages/Login";
@@ -20,12 +24,16 @@ const App = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
+    ReactGA.pageview(window.location.pathname + window.location.search);
+  }, []);
+
+  useEffect(() => {
     const allStats = async () =>
       await getStats().then((o) => dispatch(setChampions(o)));
 
     allStats();
 
-    console.log("©2022 Isaac's Magno. All rights reserved.");
+    console.log("©2023 Isaac's Magno. All rights reserved.");
   }, [dispatch]);
 
   return (
