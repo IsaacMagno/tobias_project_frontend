@@ -12,10 +12,13 @@ import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { getPhrases } from "../services/axiosRequests";
 import { selectChampion } from "../Redux/reducers/championsSlice";
+import { setUser } from "../Redux/reducers/userSlice";
 
 const Home = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+
+  const [isLargeScreen, setIsLargeScreen] = useState(false);
 
   const [selectedPhrase, setPhrase] = useState({ text: "", author: "" });
   const [load, setLoad] = useState(false);
@@ -47,38 +50,55 @@ const Home = () => {
     phrase();
   }, [logged]);
 
+  useEffect(() => {
+    const mediaQuery = window.matchMedia("(min-width: 768px)");
+    setIsLargeScreen(mediaQuery.matches);
+
+    const handleResize = () => setIsLargeScreen(mediaQuery.matches);
+    mediaQuery.addEventListener("change", handleResize);
+    return () => mediaQuery.removeEventListener("change", handleResize);
+  }, []);
+
   return (
-    <div>
-      <div className='bg-hero flex min-h-screen bg-no-repeat bg-cover bg-center bg-fixed opacity-95'>
-        <div className='grid grid-cols-7 gap-3 min-w-full'>
-          <NavSidebar />
-          <div className='text-white text-center max-w-full col-span-5'>
-            <h1 className='text-3xl font-bold mt-2 border-t p-6'>
+    <div className="min-h-screen bg-hero bg-no-repeat bg-cover bg-center bg-fixed opacity-90 md:flex">
+      {isLargeScreen ? <NavSidebar /> : null}
+      <div className="flex justify-center items-center">
+        <div className="text-white text-center  flex flex-col gap-6">
+          <div className="">
+            <h1 className="text-xl md:text-2xl lg:text-3xl font-bold mt-1  p-6">
               Bem vindo {user.name}
             </h1>
-            <div className='h-8'>
+            <div className="">
               {load ? (
-                <div className='mt-10'>
+                <div className="">
                   <Loading render={load} type={"folding-cube"} />
                 </div>
               ) : (
-                <div className='mt-10 font-extralight break-words flex flex-col justify-center px-20'>
-                  <p>{selectedPhrase.text}</p>
-                  <p className='text-sm mt-1'>{selectedPhrase.author}</p>
+                <div className="md:font-light break-words flex flex-col justify-center py-2 ">
+                  <p className="text-sm md:text-lg xl:text-xl 2xl:text-3xl">
+                    {/* O tempo não cura tudo. Aliás, o tempo não cura nada, o tempo
+                    apenas tira o incurável do centro das atenções. */}
+                    {selectedPhrase.text}
+                  </p>
+                  <p className="text-xs md:text-base lg:text-base xl:text-lg 2xl:text-2xl font-light md:font-extralight mt-1">
+                    {selectedPhrase.author}
+                    {/* Martha Medeiros */}
+                  </p>
                 </div>
               )}
             </div>
-            <div className='mt-12 py-20 flex justify-center items-center border-y h-96'>
-              <SelectIncrease renderComponent={renderComponent} />
-              <div className='ml-4 mt-6'>{ComponentRender}</div>
-            </div>
-            <div className='my-4'>
-              <Calendar />
-            </div>
           </div>
-          <Stats />
+          <div className=" flex flex-col md:flex-row justify-evenly md:justify-center items-center ">
+            <SelectIncrease renderComponent={renderComponent} />
+            <div className="md:ml-2">{ComponentRender}</div>
+          </div>
+          <div className="">
+            <Calendar />
+          </div>
+          {!isLargeScreen ? <NavSidebar /> : null}
         </div>
       </div>
+      {isLargeScreen ? <Stats /> : null}
     </div>
   );
 };

@@ -1,17 +1,12 @@
-# fly.toml app configuration file generated for tobiasproject on 2023-05-10T15:42:54-03:00
+# fly.toml app configuration file generated for tobiasproject on 2023-05-10T16:17:29-03:00
 #
 # See https://fly.io/docs/reference/configuration/ for information about how to use this file.
 #
 
 app = "tobiasproject"
 primary_region = "gru"
+kill_signal = "SIGINT"
+kill_timeout = "5s"
 
 [env]
-  PORT = "8080"
   REACT_APP_BASE_URL = "https://tobias-project-db.fly.dev"
-
-[http_service]
-  internal_port = 8080
-  force_https = true
-  auto_stop_machines = true
-  auto_start_machines = true

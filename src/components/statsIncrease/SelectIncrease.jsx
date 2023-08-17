@@ -6,37 +6,35 @@ import earth from "../../images/earth.png";
 
 const SelectIncrease = ({ renderComponent }) => {
   return (
-    <div className=''>
-      <div className='flex flex-col mt-4'>
-        <button
-          type='button'
-          className='btn-select bg-green-600 hover:bg-green-500'
-          onClick={() => renderComponent("agility")}
-        >
-          <img src={air} className='h-9 w-9 m-auto opacity-20' />
-        </button>
-        <button
-          type='button'
-          className='btn-select bg-yellow-400 hover:bg-yellow-200'
-          onClick={() => renderComponent("strength")}
-        >
-          <img src={earth} className='h-9 w-9 m-auto opacity-20' />
-        </button>
-        <button
-          type='button'
-          className='btn-select bg-red-600 hover:bg-red-500'
-          onClick={() => renderComponent("inteligence")}
-        >
-          <img src={fire} className='h-9 w-9 m-auto opacity-20' />
-        </button>
-        <button
-          type='button'
-          className='btn-select bg-blue-600 hover:bg-blue-500'
-          onClick={() => renderComponent("vitality")}
-        >
-          <img src={water} className='h-9 w-9 m-auto opacity-20' />
-        </button>
-      </div>
+    <div className="flex md:flex-col">
+      <button
+        type="button"
+        className="btn-select bg-green-600 hover:bg-green-500"
+        onClick={() => renderComponent("agility")}
+      >
+        <img src={air} className="h-9 w-9 m-auto opacity-20" />
+      </button>
+      <button
+        type="button"
+        className="btn-select bg-yellow-400 hover:bg-yellow-200"
+        onClick={() => renderComponent("strength")}
+      >
+        <img src={earth} className="h-9 w-9 m-auto opacity-20" />
+      </button>
+      <button
+        type="button"
+        className="btn-select bg-red-600 hover:bg-red-500"
+        onClick={() => renderComponent("inteligence")}
+      >
+        <img src={fire} className="h-9 w-9 m-auto opacity-20" />
+      </button>
+      <button
+        type="button"
+        className="btn-select bg-blue-600 hover:bg-blue-500"
+        onClick={() => renderComponent("vitality")}
+      >
+        <img src={water} className="h-9 w-9 m-auto opacity-20" />
+      </button>
     </div>
   );
 };
