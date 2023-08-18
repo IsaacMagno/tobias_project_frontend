@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import NavSidebar from "./NavSidebar";
 
 import { useNavigate } from "react-router-dom";
@@ -9,6 +9,8 @@ import { useSelector, useDispatch } from "react-redux";
 import actualChampion from "../functions/actualChampion";
 
 const ChampionSelect = () => {
+  const [isLargeScreen, setIsLargeScreen] = useState(false);
+
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -22,22 +24,30 @@ const ChampionSelect = () => {
     return navigate(`/champion/${id}`);
   };
 
+  useEffect(() => {
+    const mediaQuery = window.matchMedia("(min-width: 768px)");
+    setIsLargeScreen(mediaQuery.matches);
+
+    const handleResize = () => setIsLargeScreen(mediaQuery.matches);
+    mediaQuery.addEventListener("change", handleResize);
+    return () => mediaQuery.removeEventListener("change", handleResize);
+  }, []);
+
   return (
-    <div className="bg-hero flex min-h-screen flex-none bg-no-repeat bg-cover bg-center bg-fixed opacity-95">
-      <div className="flex gap-3 items-center">
-        <NavSidebar />
+    <div className="bg-hero flex flex-col md:flex-row gap-3 justify-evenly items-center min-h-screen bg-no-repeat bg-cover bg-center bg-fixed bg-opacity-95">
+      {isLargeScreen ? <NavSidebar /> : null}
+      <div className="flex flex-wrap gap-3 justify-center ">
         {championFiles.map((file) => (
-          <div className="" key={file.image}>
-            <img
-              src={`${BASE_URL}/images/${file.image}`}
-              alt={"Foto de um Campeão"}
-              key={file.image}
-              className="champ-img"
-              onClick={() => selectChamp(file.id)}
-            />
-          </div>
+          <img
+            src={`${BASE_URL}/images/${file.image}`}
+            alt={"Foto de um Campeão"}
+            key={file.image}
+            className="champ-img"
+            onClick={() => selectChamp(file.id)}
+          />
         ))}
       </div>
+      {!isLargeScreen ? <NavSidebar /> : null}
     </div>
   );
 };

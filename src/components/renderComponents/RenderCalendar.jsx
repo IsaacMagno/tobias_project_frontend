@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { setChampions } from "../../Redux/reducers/championsSlice";
@@ -17,21 +17,8 @@ const RenderCalendar = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const calendarRef = useRef();
-
   const champions = useSelector((state) => state.champions);
   const { user, logged } = useSelector((state) => state.user);
-
-  useEffect(() => {
-    if (calendarRef.current) {
-      const calendarApi = calendarRef.current.getApi();
-      setAspectRatio(calendarApi);
-
-      window.addEventListener("resize", () => setAspectRatio(calendarApi));
-      return () =>
-        window.removeEventListener("resize", () => setAspectRatio(calendarApi));
-    }
-  }, []);
 
   useEffect(() => {
     if (!logged) return navigate("/");
@@ -90,21 +77,6 @@ const RenderCalendar = () => {
     await getStats().then((o) => dispatch(setChampions(o)));
   };
 
-  const setAspectRatio = (calendar) => {
-    let width = window.innerWidth;
-    if (width < 576) {
-      calendar.setOption("aspectRatio", 1);
-    } else if (width <= 768) {
-      calendar.setOption("aspectRatio", 1.5);
-    } else if (width <= 992) {
-      calendar.setOption("aspectRatio", 1.5);
-    } else if (width <= 1200) {
-      calendar.setOption("aspectRatio", 2);
-    } else {
-      calendar.setOption("aspectRatio", 2.5);
-    }
-  };
-
   return events ? (
     <div className="flex flex-col justify-center p-2">
       <div className="m-auto ">
@@ -126,13 +98,10 @@ const RenderCalendar = () => {
       </div>
       <div className="my-1 ">
         <FullCalendar
-          ref={calendarRef}
           plugins={[daydgridPlugin, interactionPlugin, bootstrap5Plugin]}
           locale="pt-br"
           dateClick={handleDateClick}
-          // height={525}
-          // height={225}
-          aspectRatio={window.innerWidth < 768 ? 1 : 2}
+          height={"60vh"}
           events={events}
         />
       </div>

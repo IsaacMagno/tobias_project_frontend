@@ -41,13 +41,13 @@ const Home = () => {
       dispatch(selectChampion(user));
     }
 
-    setLoad(true);
-    const phrase = async () =>
-      await getPhrases()
-        .then((o) => setPhrase(o))
-        .then(() => setLoad(false));
+    // setLoad(true);
+    // const phrase = async () =>
+    //   await getPhrases()
+    //     .then((o) => setPhrase(o))
+    //     .then(() => setLoad(false));
 
-    phrase();
+    // phrase();
   }, [logged]);
 
   useEffect(() => {
@@ -60,12 +60,12 @@ const Home = () => {
   }, []);
 
   return (
-    <div className="min-h-screen bg-hero bg-no-repeat bg-cover bg-center bg-fixed opacity-90 md:flex">
+    <div className="min-h-screen bg-hero bg-no-repeat bg-cover bg-center bg-fixed bg-opacity-90 md:grid md:grid-cols-5">
       {isLargeScreen ? <NavSidebar /> : null}
-      <div className="flex justify-center items-center">
-        <div className="text-white text-center  flex flex-col gap-6">
-          <div className="">
-            <h1 className="text-xl md:text-2xl lg:text-3xl font-bold mt-1  p-6">
+      <div className="flex justify-center items-center md:col-span-3">
+        <div className="text-white text-center flex flex-col gap-6">
+          <div className=" ">
+            <h1 className="text-xl md:text-2xl font-bold mt-1  p-6">
               Bem vindo {user.name}
             </h1>
             <div className="">
@@ -74,15 +74,15 @@ const Home = () => {
                   <Loading render={load} type={"folding-cube"} />
                 </div>
               ) : (
-                <div className="md:font-light break-words flex flex-col justify-center py-2 ">
-                  <p className="text-sm md:text-lg xl:text-xl 2xl:text-3xl">
-                    {/* O tempo não cura tudo. Aliás, o tempo não cura nada, o tempo
-                    apenas tira o incurável do centro das atenções. */}
-                    {selectedPhrase.text}
+                <div className="md:font-light break-words flex flex-col justify-center py-2">
+                  <p className="text-sm md:text-lg">
+                    O tempo não cura tudo. Aliás, o tempo não cura nada, o tempo
+                    apenas tira o incurável do centro das atenções.
+                    {/* {selectedPhrase.text} */}
                   </p>
-                  <p className="text-xs md:text-base lg:text-base xl:text-lg 2xl:text-2xl font-light md:font-extralight mt-1">
-                    {selectedPhrase.author}
-                    {/* Martha Medeiros */}
+                  <p className="text-xs md:text-base lg:text-base font-light md:font-extralight mt-1">
+                    {/* {selectedPhrase.author} */}
+                    Martha Medeiros
                   </p>
                 </div>
               )}

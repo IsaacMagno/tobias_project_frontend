@@ -18,24 +18,24 @@ const NavSidebar = () => {
   }, []);
 
   return (
-    <div className="flex md:h-screen top-0 items-center justify-center ">
+    <div className="flex md:h-screen top-0 items-center justify-center md:justify-start">
       <ul className="list-none md:space-y-2 flex md:flex-col ">
         <li
-          className="nav-btn nav-btn-responsive hover:shadow-inner hover:shadow-black/20"
+          className="nav-btn nav-btn-responsive hover:shadow-inner hover:shadow-black/20 justify-center rounded-l md:rounded-r md:rounded-l-none"
           onClick={() => navigate("/home")}
         >
           <StartIcon className="" />
-          {isLargeScreen && <p className="font-semibold ml-2">Inicio</p>}
+          {isLargeScreen && <p className="font-semibold ml-2 ">Inicio</p>}
         </li>
         <li
-          className="nav-btn nav-btn-responsive hover:shadow-inner hover:shadow-black/20"
+          className="nav-btn nav-btn-responsive hover:shadow-inner hover:shadow-black/20 justify-center md:rounded-r"
           onClick={() => navigate("/champions")}
         >
           <ChampionsIcon />
           {isLargeScreen && <p className="font-semibold ml-2">Campeões</p>}
         </li>
         <li
-          className="nav-btn nav-btn-responsive hover:shadow-inner hover:shadow-black/20"
+          className="nav-btn nav-btn-responsive hover:shadow-inner hover:shadow-black/20 justify-center rounded-r"
           onClick={() => navigate("/task")}
         >
           <TaskIcon className="w-10 h-10" />

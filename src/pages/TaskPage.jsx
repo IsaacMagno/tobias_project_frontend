@@ -71,11 +71,11 @@ const TaskPage = () => {
   };
 
   return (
-    <div className="bg-hero grid grid-cols-7 gap-3 min-h-screen bg-no-repeat bg-cover bg-center bg-fixed opacity-95">
-      <div className="col-span-1">
+    <div className="bg-hero grid grid-cols-5 gap-3 min-h-screen bg-no-repeat bg-cover bg-center bg-fixed bg-opacity-95">
+      <div className="">
         <NavSidebar />
       </div>
-      <div className="max-w-full col-span-5 ">
+      <div className="max-w-full col-span-3 ">
         <h1 className="text-white text-center text-3xl font-bold mt-2 border-t p-6">
           Metas
         </h1>
@@ -108,7 +108,7 @@ const TaskPage = () => {
               <option disabled>Diaria</option>
             </select>
             <button
-              className="bg-gray-800 p-3  rounded font-bold hover:bg-gray-700 text-white flex ml-32"
+              className="bg-gray-800 p-3 text-center items-center rounded font-bold hover:bg-gray-700 text-white flex ml-32"
               onClick={() => handleCreate()}
             >
               Criar
@@ -168,7 +168,7 @@ const TaskPage = () => {
             : null}
         </div>
       </div>
-      <div className="col-span-1">
+      <div className="">
         <Stats />
       </div>
     </div>
