@@ -41,13 +41,13 @@ const Home = () => {
       dispatch(selectChampion(user));
     }
 
-    // setLoad(true);
-    // const phrase = async () =>
-    //   await getPhrases()
-    //     .then((o) => setPhrase(o))
-    //     .then(() => setLoad(false));
+    setLoad(true);
+    const phrase = async () =>
+      await getPhrases()
+        .then((o) => setPhrase(o))
+        .then(() => setLoad(false));
 
-    // phrase();
+    phrase();
   }, [logged]);
 
   useEffect(() => {
@@ -76,13 +76,13 @@ const Home = () => {
               ) : (
                 <div className="md:font-light break-words flex flex-col justify-center py-2">
                   <p className="text-sm md:text-lg">
-                    O tempo não cura tudo. Aliás, o tempo não cura nada, o tempo
-                    apenas tira o incurável do centro das atenções.
-                    {/* {selectedPhrase.text} */}
+                    {/* O tempo não cura tudo. Aliás, o tempo não cura nada, o tempo
+                    apenas tira o incurável do centro das atenções. */}
+                    {selectedPhrase.text}
                   </p>
                   <p className="text-xs md:text-base lg:text-base font-light md:font-extralight mt-1">
-                    {/* {selectedPhrase.author} */}
-                    Martha Medeiros
+                    {selectedPhrase.author}
+                    {/* Martha Medeiros */}
                   </p>
                 </div>
               )}
