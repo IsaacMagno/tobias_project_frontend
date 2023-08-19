@@ -14,6 +14,7 @@ const TaskPage = () => {
   const [taskName, setTaskName] = useState();
   const [taskGoal, setTaskGoal] = useState();
   const [taskType, setTaskType] = useState("Anual");
+  const [isLargeScreen, setIsLargeScreen] = useState(false);
 
   const [taskValue, setTaskValue] = useState({});
   const [taskId, setTaskId] = useState();
@@ -70,36 +71,42 @@ const TaskPage = () => {
     setTaskGoal("");
   };
 
+  useEffect(() => {
+    const mediaQuery = window.matchMedia("(min-width: 768px)");
+    setIsLargeScreen(mediaQuery.matches);
+
+    const handleResize = () => setIsLargeScreen(mediaQuery.matches);
+    mediaQuery.addEventListener("change", handleResize);
+    return () => mediaQuery.removeEventListener("change", handleResize);
+  }, []);
+
   return (
-    <div className="bg-hero grid grid-cols-5 gap-3 min-h-screen bg-no-repeat bg-cover bg-center bg-fixed bg-opacity-95">
-      <div className="">
-        <NavSidebar />
-      </div>
-      <div className="max-w-full col-span-3 ">
-        <h1 className="text-white text-center text-3xl font-bold mt-2 border-t p-6">
-          Metas
-        </h1>
+    <div className="bg-hero md:grid md:grid-cols-5 gap-3 min-h-screen bg-no-repeat bg-cover bg-center bg-fixed bg-opacity-95">
+      {isLargeScreen ? <NavSidebar /> : null}
+
+      <div className="min-w-full col-span-3 ">
+        <h1 className="text-white text-center text-3xl font-bold p-6">Metas</h1>
         <div className="flex bg-white/30 p-4 rounded items-center">
-          <div className="flex justify-between">
+          <div className="flex flex-col  lg:flex-row md:justify-between">
             <h3 className="text-white font-bold text-center m-2 text-2xl">
               Nova Meta
             </h3>
             <input
               type="text"
               placeholder="Objetivo"
-              className="bg-transparent text-gray-400 font-bold text-right flex focus:outline-none"
+              className="bg-transparent text-gray-400 font-bold md:text-right flex focus:outline-none ml-1 md:ml-0"
               value={taskName}
               onChange={({ target: { value } }) => setTaskName(value)}
             />
             <input
               type="number"
               placeholder="Meta"
-              className="bg-transparent text-right flex focus:outline-none text-gray-400"
+              className="bg-transparent md:text-right flex focus:outline-none text-gray-400 font-bold ml-1 md:ml-0"
               value={taskGoal}
               onChange={({ target: { value } }) => setTaskGoal(value)}
             />
             <select
-              className="bg-transparent text-gray-400 font-bold text-right  focus:outline-none ml-44"
+              className="bg-transparent text-gray-400 font-bold md:text-right  focus:outline-none md:ml-44"
               onChange={({ target: value }) => setTaskType(value)}
             >
               <option>Anual</option>
@@ -108,7 +115,7 @@ const TaskPage = () => {
               <option disabled>Diaria</option>
             </select>
             <button
-              className="bg-gray-800 p-3 text-center items-center rounded font-bold hover:bg-gray-700 text-white flex ml-32"
+              className="bg-gray-800 p-3 text-center items-center rounded font-bold hover:bg-gray-700 text-white flex md:ml-32"
               onClick={() => handleCreate()}
             >
               Criar
@@ -149,7 +156,7 @@ const TaskPage = () => {
                   <div className="flex justify-end m-1 mx-2 p-2">
                     <input
                       key={task.id}
-                      className="w-24 p-1 text-black text-right rounded-l focus:outline-none"
+                      className="w-36 md:w-24 p-1 text-black text-right rounded-l focus:outline-none"
                       type="number"
                       value={taskValue[task.name]}
                       onChange={({ target: { value } }) =>
@@ -168,9 +175,8 @@ const TaskPage = () => {
             : null}
         </div>
       </div>
-      <div className="">
-        <Stats />
-      </div>
+      {!isLargeScreen ? <NavSidebar /> : null}
+      {isLargeScreen ? <Stats /> : null}
     </div>
   );
 };

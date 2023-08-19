@@ -63,7 +63,7 @@ const Home = () => {
     <div className="min-h-screen bg-hero bg-no-repeat bg-cover bg-center bg-fixed bg-opacity-90 md:grid md:grid-cols-5">
       {isLargeScreen ? <NavSidebar /> : null}
       <div className="flex justify-center items-center md:col-span-3">
-        <div className="text-white text-center flex flex-col gap-6">
+        <div className="text-white text-center flex flex-col gap-6 min-w-full">
           <div className=" ">
             <h1 className="text-xl md:text-2xl font-bold mt-1  p-6">
               Bem vindo {user.name}
@@ -95,7 +95,11 @@ const Home = () => {
           <div className="">
             <Calendar />
           </div>
-          {!isLargeScreen ? <NavSidebar /> : null}
+          {!isLargeScreen ? (
+            <div className="mb-10">
+              <NavSidebar />
+            </div>
+          ) : null}
         </div>
       </div>
       {isLargeScreen ? <Stats /> : null}
