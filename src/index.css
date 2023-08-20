@@ -19,6 +19,16 @@ body {
   vertical-align: baseline;
 }
 
+input,
+select,
+textarea {
+  width: 195px;
+  -ms-box-sizing: content-box;
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+  -webkit-box-sizing: content-box;
+}
+
 ::-webkit-scrollbar {
   display: none;
 }

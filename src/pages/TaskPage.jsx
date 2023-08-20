@@ -84,45 +84,43 @@ const TaskPage = () => {
     <div className="bg-hero md:grid md:grid-cols-5 gap-3 min-h-screen bg-no-repeat bg-cover bg-center bg-fixed bg-opacity-95">
       {isLargeScreen ? <NavSidebar /> : null}
 
-      <div className="min-w-full col-span-3 ">
+      <div className="min-w-full col-span-3">
         <h1 className="text-white text-center text-3xl font-bold p-6">Metas</h1>
-        <div className="flex bg-white/30 p-4 rounded items-center">
-          <div className="flex flex-col  lg:flex-row md:justify-between">
-            <h3 className="text-white font-bold text-center m-2 text-2xl">
-              Nova Meta
-            </h3>
-            <input
-              type="text"
-              placeholder="Objetivo"
-              className="bg-transparent text-gray-400 font-bold md:text-right flex focus:outline-none ml-1 md:ml-0"
-              value={taskName}
-              onChange={({ target: { value } }) => setTaskName(value)}
-            />
-            <input
-              type="number"
-              placeholder="Meta"
-              className="bg-transparent md:text-right flex focus:outline-none text-gray-400 font-bold ml-1 md:ml-0"
-              value={taskGoal}
-              onChange={({ target: { value } }) => setTaskGoal(value)}
-            />
-            <select
-              className="bg-transparent text-gray-400 font-bold md:text-right  focus:outline-none md:ml-44"
-              onChange={({ target: value }) => setTaskType(value)}
-            >
-              <option>Anual</option>
-              <option disabled>Mensal</option>
-              <option disabled>Semanal</option>
-              <option disabled>Diaria</option>
-            </select>
-            <button
-              className="bg-gray-800 p-3 text-center items-center rounded font-bold hover:bg-gray-700 text-white flex md:ml-32"
-              onClick={() => handleCreate()}
-            >
-              Criar
-            </button>
-          </div>
+        <div className="flex bg-white/30 m-2 p-4 rounded items-center flex-col lg:flex-row md:justify-between gap-3">
+          <h3 className="text-white font-bold text-center m-2 text-2xl">
+            Nova Meta
+          </h3>
+          <input
+            type="text"
+            placeholder="Objetivo"
+            className="bg-gray-200 rounded p-2 text-gray-400 font-bold md:text-right flex focus:outline-none ml-1 md:ml-0"
+            value={taskName}
+            onChange={({ target: { value } }) => setTaskName(value)}
+          />
+          <input
+            type="number"
+            placeholder="Meta"
+            className="bg-gray-200 rounded p-2 md:text-right flex focus:outline-none text-gray-400 font-bold ml-1 md:ml-0"
+            value={taskGoal}
+            onChange={({ target: { value } }) => setTaskGoal(value)}
+          />
+          <select
+            className="bg-gray-200 rounded p-2 text-gray-400 font-bold md:text-right focus:outline-none"
+            onChange={({ target: value }) => setTaskType(value)}
+          >
+            <option>Anual</option>
+            <option disabled>Mensal</option>
+            <option disabled>Semanal</option>
+            <option disabled>Diaria</option>
+          </select>
+          <button
+            className="bg-gray-800 p-3 text-center items-center rounded font-bold hover:bg-gray-700 text-white "
+            onClick={() => handleCreate()}
+          >
+            Criar
+          </button>
         </div>
-        <div className="flex gap-3 mt-12 flex-wrap ml-12">
+        <div className="flex gap-3 mt-12 flex-wrap justify-center">
           {user.length === undefined
             ? task.map((task) => (
                 <div
@@ -153,10 +151,10 @@ const TaskPage = () => {
                     <p>Atual </p>
                     {task.actual}
                   </div>
-                  <div className="flex justify-end m-1 mx-2 p-2">
+                  <div className="flex justify-end m-1 mx-2 p-2 ">
                     <input
                       key={task.id}
-                      className="w-36 md:w-24 p-1 text-black text-right rounded-l focus:outline-none"
+                      className="w-36 p-1 text-black text-right rounded-l focus:outline-none"
                       type="number"
                       value={taskValue[task.name]}
                       onChange={({ target: { value } }) =>
