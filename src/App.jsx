@@ -7,6 +7,7 @@ import Login from "./pages/Login";
 import ChampionSelect from "./pages/ChampionSelect";
 import ChampionPage from "./pages/ChampionPage";
 import TaskPage from "./pages/TaskPage";
+import Register from "./pages/Register";
 
 import { useDispatch } from "react-redux";
 import { getStats } from "./services/axiosRequests";
@@ -38,11 +39,12 @@ const App = () => {
 
   return (
     <Routes>
-      <Route path='/' element={<Login />} />
-      <Route path='/home' element={<Home />} />
-      <Route path='/champions' element={<ChampionSelect />} />
-      <Route path='/champion/:id' element={<ChampionPage />} />
-      <Route path='/task' element={<TaskPage />} />
+      <Route path="/" element={<Login />} />
+      <Route path="/home" element={<Home />} />
+      <Route path="/champions" element={<ChampionSelect />} />
+      <Route path="/champion/:id" element={<ChampionPage />} />
+      <Route path="/task" element={<TaskPage />} />
+      <Route path="/register" element={<Register />} />
     </Routes>
   );
 };

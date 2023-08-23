@@ -49,45 +49,50 @@ const Login = () => {
     <div className="bg-hero flex items-center justify-center min-h-screen bg-no-repeat bg-cover bg-center bg-fixed opacity-95">
       <div>
         <div className="max-w-sm w-full lg:max-w-full lg:flex">
-          <div className="bg-tobs h-48 lg:h-auto lg:w-48 flex-none rounded-t lg:rounded-t-none lg:rounded-l text-center overflow-hidden bg-no-repeat bg-cover"></div>
+          <div className="max-w-sm">
+            <img src={process.env.PUBLIC_URL + "/tobias_vintage_sm.webp"}></img>
+          </div>
 
-          <div className="border-r border-b border-l lg:border-l-0 lg:border-t  bg-white rounded-b lg:rounded-b-none lg:rounded-r p-8 flex flex-col justify-between leading-normal">
+          <div className="rounded-r p-8 flex flex-col justify-evenly items-center bg-white relative">
             <form
               onSubmit={doLogin}
-              className="bg-white rounded px-8 pt-6 pb-8 mb-4"
+              className="bg-white flex flex-col items-center justify-evenly"
             >
-              <div className="mb-2 mt-10">
-                <input
-                  className="input-login"
-                  id="username"
-                  type="text"
-                  placeholder="Username"
-                  onChange={({ target }) => setUsername(target.value)}
-                />
-              </div>
+              <input
+                className="input-login"
+                id="username"
+                type="text"
+                placeholder="Usuário"
+                onChange={({ target }) => setUsername(target.value)}
+              />
 
-              <div className="mb-4">
-                <input
-                  className="input-login mb-3"
-                  id="password"
-                  type="password"
-                  placeholder="Password"
-                  onChange={({ target }) => setPassword(target.value)}
-                />
-              </div>
+              <input
+                className="input-login"
+                id="password"
+                type="password"
+                placeholder="Senha"
+                onChange={({ target }) => setPassword(target.value)}
+              />
 
-              <div className="flex items-center justify-center">
-                <button
-                  className="bg-neutral-700 hover:bg-neutral-900 text-white font-bold py-2 px-32 rounded outline-none"
-                  type="submit"
-                >
-                  Entrar
-                </button>
-              </div>
+              <button
+                className="mt-6 bg-neutral-700 hover:bg-neutral-900 text-white font-bold py-2  min-w-full rounded outline-none"
+                type="submit"
+              >
+                Entrar
+              </button>
+              <button
+                type="button"
+                className="mt-2 bg-neutral-700 hover:bg-neutral-900 text-white font-bold py-2 min-w-full rounded outline-none"
+                onClick={() => navigate("/register")}
+              >
+                Criar conta
+              </button>
             </form>
-            <p className="text-center text-gray-500 text-xs">
-              &copy;2024 Tobias's Corp. All rights reserved.
-            </p>
+            <div className="flex justify-center absolute bottom-2 inset-x-0">
+              <p className="text-gray-500 text-xs">
+                &copy;2024 Tobias's Corp. All rights reserved.
+              </p>
+            </div>
           </div>
         </div>
       </div>

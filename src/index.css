@@ -85,5 +85,5 @@ input[type="number"] {
 }
 
 .input-login {
-  @apply shadow appearance-none border rounded w-full py-2 px-3 bg-neutral-800 text-white leading-tight outline-none;
+  @apply shadow appearance-none border rounded min-w-full py-2 px-3 bg-neutral-800 text-white  outline-none;
 }
