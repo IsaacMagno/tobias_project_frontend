@@ -34,7 +34,7 @@ const ChampionSelect = () => {
   }, []);
 
   return (
-    <div className="bg-hero flex flex-col md:flex-row gap-3 justify-evenly items-center min-h-screen bg-no-repeat bg-cover bg-center bg-fixed bg-opacity-95">
+    <div className="bg-hero flex flex-col md:flex-row gap-3  justify-evenly items-center min-h-screen bg-no-repeat bg-cover bg-center bg-fixed bg-opacity-95">
       {isLargeScreen ? <NavSidebar /> : null}
       <div className="flex flex-wrap gap-3 justify-center ">
         {championFiles.map((file) => (
@@ -44,7 +44,7 @@ const ChampionSelect = () => {
             key={file.image}
             className="champ-img"
             onClick={() => selectChamp(file.id)}
-            style={{ width: "16vw" }}
+            style={{ width: "20vh", height: "25vh" }}
           />
         ))}
       </div>

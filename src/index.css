@@ -81,7 +81,7 @@ input[type="number"] {
 }
 
 .champ-img {
-  @apply ml-1 rounded shadow-2xl shadow-black cursor-pointer grayscale contrast-100 brightness-50 hover:invert;
+  @apply rounded shadow-2xl shadow-black cursor-pointer grayscale contrast-100 brightness-50 hover:invert;
 }
 
 .input-login {
