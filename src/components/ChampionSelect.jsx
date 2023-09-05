@@ -44,7 +44,7 @@ const ChampionSelect = () => {
             key={file.image}
             className="champ-img"
             onClick={() => selectChamp(file.id)}
-            style={{ width: "24%" }}
+            style={{ width: "16vw" }}
           />
         ))}
       </div>
