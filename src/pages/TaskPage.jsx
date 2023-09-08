@@ -8,7 +8,14 @@ import { useNavigate } from "react-router-dom";
 import { setUser } from "../Redux/reducers/userSlice";
 import { setChampions } from "../Redux/reducers/championsSlice";
 
-import { updateTask, getStats, createTask } from "../services/axiosRequests";
+import {
+  updateTask,
+  getStats,
+  createTask,
+  deleteTask,
+} from "../services/axiosRequests";
+
+import trash from "../images/trash-icon-png-12.jpg";
 
 const TaskPage = () => {
   const [taskName, setTaskName] = useState();
@@ -69,6 +76,12 @@ const TaskPage = () => {
 
     setTaskName("");
     setTaskGoal("");
+  };
+
+  const handleDelete = async (id) => {
+    await deleteTask(id);
+
+    handleUpdate();
   };
 
   useEffect(() => {
@@ -156,22 +169,30 @@ const TaskPage = () => {
                     <p>Atual </p>
                     {task.actual}
                   </div>
-                  <div className="flex justify-end m-1 mx-2 p-2 ">
+                  <div className="flex justify-end m-1 mx-2 ">
                     <input
                       key={task.id}
-                      className="w-36 p-1 text-black text-right rounded-l focus:outline-none"
+                      className="w-28 p-1 text-black text-right rounded-l focus:outline-none"
                       type="number"
                       value={taskValue[task.name]}
                       onChange={({ target: { value } }) =>
                         handleChange(value, task.id, task.name)
                       }
                     />
-                    <button
-                      className="bg-gray-800 p-1 rounded-r hover:bg-gray-800/80"
-                      onClick={() => handleSubmit(task.name)}
-                    >
-                      Enviar
-                    </button>
+                    <div className="flex">
+                      <button
+                        className="bg-gray-800 p-1 rounded-r hover:bg-gray-800/80"
+                        onClick={() => handleSubmit(task.name)}
+                      >
+                        Enviar
+                      </button>
+                      <button
+                        className=""
+                        onClick={() => handleDelete(task.id)}
+                      >
+                        <img src={trash} className="w-8 hover:p-1" />
+                      </button>
+                    </div>
                   </div>
                 </div>
               ))

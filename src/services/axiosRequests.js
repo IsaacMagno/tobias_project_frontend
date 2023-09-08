@@ -79,5 +79,5 @@ export const updateTask = async (id, taskData) => {
 };
 
 export const deleteTask = async (id) => {
-  await axios.delete(`${BASE_URL}/${id}`);
+  await axios.delete(`${BASE_URL}/task/${id}`);
 };
