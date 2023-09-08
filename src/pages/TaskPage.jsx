@@ -106,13 +106,14 @@ const TaskPage = () => {
           />
           <select
             className="bg-gray-200 rounded p-2 text-gray-400 font-bold md:text-right focus:outline-none"
-            onChange={({ target: value }) => setTaskType(value)}
+            onChange={(event) => setTaskType(event.target.value)}
           >
             <option>Anual</option>
-            <option disabled>Mensal</option>
-            <option disabled>Semanal</option>
-            <option disabled>Diaria</option>
+            <option>Mensal</option>
+            <option>Semanal</option>
+            <option>Diaria</option>
           </select>
+
           <button
             className="bg-gray-800 p-3 text-center items-center rounded font-bold hover:bg-gray-700 text-white "
             onClick={() => handleCreate()}
@@ -128,24 +129,28 @@ const TaskPage = () => {
                   key={task.id}
                 >
                   <div className="flex justify-between m-1 mx-2 p-2 rounded bg-gray-700 hover:bg-gray-600">
-                    <p>Objetivo </p>
+                    <p>Objetivo</p>
                     <p>{task.name}</p>
                   </div>
                   <div className="flex justify-between m-1 mx-2 p-2 rounded bg-gray-700 hover:bg-gray-600">
-                    <p>Tipo </p>
+                    <p>Tipo</p>
                     <p>{task.type}</p>
                   </div>
                   <div className="flex justify-between m-1 mx-2 p-2 rounded bg-gray-700 hover:bg-gray-600">
-                    <p>Meta </p>
+                    <p>Meta</p>
                     <p>{task.goal}</p>
                   </div>
                   <div className="flex justify-between m-1 mx-2 p-2 rounded bg-gray-700 hover:bg-gray-600">
-                    <p>Mensal </p>
+                    <p>Mensal</p>
                     <p>{task.month}</p>
                   </div>
                   <div className="flex justify-between m-1 mx-2 p-2 rounded bg-gray-700 hover:bg-gray-600">
-                    <p>Semanal </p>
+                    <p>Semanal</p>
                     <p>{task.week}</p>
+                  </div>
+                  <div className="flex justify-between m-1 mx-2 p-2 rounded bg-gray-700 hover:bg-gray-600">
+                    <p>Diario </p>
+                    <p>{task.daily}</p>
                   </div>
                   <div className="flex justify-between m-1 mx-2 p-2 rounded bg-gray-700 hover:bg-gray-600">
                     <p>Atual </p>
