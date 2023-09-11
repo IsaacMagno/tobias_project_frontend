@@ -49,7 +49,7 @@ input[type="number"] {
 }
 
 .nav-btn {
-  @apply p-4 text-gray-900  bg-gray-100/10 hover:bg-gray-100/60 hover:cursor-pointer flex items-center;
+  @apply p-4 text-gray-900 bg-gray-100 hover:opacity-60 hover:cursor-pointer flex items-center;
 }
 
 .nav-btn-responsive {
@@ -81,9 +81,29 @@ input[type="number"] {
 }
 
 .champ-img {
-  @apply rounded shadow-2xl shadow-black cursor-pointer grayscale contrast-100 brightness-50 hover:invert;
+  @apply rounded  grayscale contrast-100 brightness-50 hover:invert;
 }
 
 .input-login {
   @apply shadow appearance-none border rounded min-w-full py-2 px-3 bg-neutral-800 text-white  outline-none;
+}
+
+.bg-gray-818 {
+  background-color: #818a8c;
+}
+
+.bg-gray-3b3 {
+  background-color: #3b3f40;
+}
+
+.bg-gray-8b8 {
+  background-color: #b8bfbf;
+}
+
+.bg-gray-9fa {
+  background-color: #9fa6a5;
+}
+
+.bg-gray-0d0 {
+  background-color: #0d0d0d;
 }

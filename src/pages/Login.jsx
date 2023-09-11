@@ -46,7 +46,7 @@ const Login = () => {
   };
 
   return (
-    <div className="bg-hero flex items-center justify-center min-h-screen bg-no-repeat bg-cover bg-center bg-fixed opacity-95">
+    <div className="bg-gray-0d0 flex items-center justify-center min-h-screen bg-no-repeat bg-cover bg-center bg-fixed opacity-95">
       <div>
         <div className="max-w-sm w-full lg:max-w-full lg:flex">
           <div className="max-w-sm">

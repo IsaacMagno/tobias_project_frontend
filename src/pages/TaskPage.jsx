@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useAlert } from "react-alert";
 
 import NavSidebar from "../components/NavSidebar";
 import Stats from "../components/Stats";
@@ -22,12 +23,12 @@ const TaskPage = () => {
   const [taskGoal, setTaskGoal] = useState();
   const [taskType, setTaskType] = useState("Anual");
   const [isLargeScreen, setIsLargeScreen] = useState(false);
-
   const [taskValue, setTaskValue] = useState({});
   const [taskId, setTaskId] = useState();
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const alert = useAlert();
 
   const { user } = useSelector((state) => state.user);
   const champions = useSelector((state) => state.champions);
@@ -53,6 +54,13 @@ const TaskPage = () => {
   const handleChange = async (task, id, name) => {
     setTaskValue({ [name]: task });
     setTaskId(id);
+  };
+
+  const handleClick = async (id) => {
+    if (window.confirm("Você quer mesmo excluir essa meta?")) {
+      await handleDelete(id);
+      alert.show("A meta foi excluida");
+    }
   };
 
   const handleSubmit = async (name) => {
@@ -94,7 +102,7 @@ const TaskPage = () => {
   }, []);
 
   return (
-    <div className="bg-hero md:grid md:grid-cols-5 gap-3 min-h-screen bg-no-repeat bg-cover bg-center bg-fixed bg-opacity-95">
+    <div className="bg-gray-0d0 md:grid md:grid-cols-5 gap-3 min-h-screen bg-no-repeat bg-cover bg-center bg-fixed bg-opacity-95">
       {isLargeScreen ? <NavSidebar /> : null}
 
       <div className="min-w-full col-span-3">
@@ -134,38 +142,38 @@ const TaskPage = () => {
             Criar
           </button>
         </div>
-        <div className="flex gap-3 mt-12 flex-wrap justify-center">
+        <div className="flex gap-3 mt-12 flex-wrap ">
           {user.length === undefined
             ? task.map((task) => (
                 <div
                   className="flex flex-col w-56 text-white font-bold"
                   key={task.id}
                 >
-                  <div className="flex justify-between m-1 mx-2 p-2 rounded bg-gray-700 hover:bg-gray-600">
+                  <div className="flex justify-between m-1 mx-2 p-2 rounded bg-gray-3b3 hover:bg-white/30">
                     <p>Objetivo</p>
                     <p>{task.name}</p>
                   </div>
-                  <div className="flex justify-between m-1 mx-2 p-2 rounded bg-gray-700 hover:bg-gray-600">
+                  <div className="flex justify-between m-1 mx-2 p-2 rounded bg-gray-3b3 hover:bg-white/30">
                     <p>Tipo</p>
                     <p>{task.type}</p>
                   </div>
-                  <div className="flex justify-between m-1 mx-2 p-2 rounded bg-gray-700 hover:bg-gray-600">
+                  <div className="flex justify-between m-1 mx-2 p-2 rounded bg-gray-3b3 hover:bg-white/30">
                     <p>Meta</p>
                     <p>{task.goal}</p>
                   </div>
-                  <div className="flex justify-between m-1 mx-2 p-2 rounded bg-gray-700 hover:bg-gray-600">
+                  <div className="flex justify-between m-1 mx-2 p-2 rounded bg-gray-3b3 hover:bg-white/30">
                     <p>Mensal</p>
                     <p>{task.month}</p>
                   </div>
-                  <div className="flex justify-between m-1 mx-2 p-2 rounded bg-gray-700 hover:bg-gray-600">
+                  <div className="flex justify-between m-1 mx-2 p-2 rounded bg-gray-3b3 hover:bg-white/30">
                     <p>Semanal</p>
                     <p>{task.week}</p>
                   </div>
-                  <div className="flex justify-between m-1 mx-2 p-2 rounded bg-gray-700 hover:bg-gray-600">
+                  <div className="flex justify-between m-1 mx-2 p-2 rounded bg-gray-3b3 hover:bg-white/30">
                     <p>Diario </p>
                     <p>{task.daily}</p>
                   </div>
-                  <div className="flex justify-between m-1 mx-2 p-2 rounded bg-gray-700 hover:bg-gray-600">
+                  <div className="flex justify-between m-1 mx-2 p-2 rounded bg-gray-3b3 hover:bg-white/30">
                     <p>Atual </p>
                     {task.actual}
                   </div>
@@ -181,15 +189,12 @@ const TaskPage = () => {
                     />
                     <div className="flex">
                       <button
-                        className="bg-gray-800 p-1 rounded-r hover:bg-gray-800/80"
+                        className="bg-gray-818 p-1 rounded-r hover:bg-white/30"
                         onClick={() => handleSubmit(task.name)}
                       >
                         Enviar
                       </button>
-                      <button
-                        className=""
-                        onClick={() => handleDelete(task.id)}
-                      >
+                      <button className="" onClick={() => handleClick(task.id)}>
                         <img src={trash} className="w-8 hover:p-1" />
                       </button>
                     </div>

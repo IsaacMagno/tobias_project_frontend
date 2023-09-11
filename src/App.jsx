@@ -8,6 +8,8 @@ import ChampionSelect from "./pages/ChampionSelect";
 import ChampionPage from "./pages/ChampionPage";
 import TaskPage from "./pages/TaskPage";
 import Register from "./pages/Register";
+import Achievements from "./pages/Achievements";
+import Settings from "./pages/Settings";
 
 import { useDispatch } from "react-redux";
 import { getStats } from "./services/axiosRequests";
@@ -45,6 +47,8 @@ const App = () => {
       <Route path="/champion/:id" element={<ChampionPage />} />
       <Route path="/task" element={<TaskPage />} />
       <Route path="/register" element={<Register />} />
+      <Route path="/achievements" element={<Achievements />} />
+      <Route path="/settings" element={<Settings />} />
     </Routes>
   );
 };
