@@ -102,7 +102,7 @@ const TaskPage = () => {
   }, []);
 
   return (
-    <div className=" bg-gray-0d0 md:grid md:grid-cols-5 gap-12 min-h-screen bg-no-repeat bg-cover bg-center bg-fixed bg-opacity-95">
+    <div className=" bg-gray-0d0 md:grid md:grid-cols-5 gap-12 min-h-screen ">
       {isLargeScreen ? <NavSidebar /> : null}
 
       <div className="min-w-full col-span-3">

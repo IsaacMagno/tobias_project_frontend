@@ -21,7 +21,7 @@ const NavSidebar = () => {
   }, []);
 
   return (
-    <div className="flex md:h-screen  bg-orange-400/90 min-h-full md:rounded-r shadow shadow-black">
+    <div className="flex md:h-screen  bg-orange-400/90 min-h-full md:rounded-r shadow shadow-black sticky top-0">
       <ul className="list-none md:space-y-2 flex md:flex-col min-w-full justify-center md:justify-start md:mt-12">
         {isLargeScreen && (
           <img

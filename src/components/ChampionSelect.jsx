@@ -34,7 +34,7 @@ const ChampionSelect = () => {
   }, []);
 
   return (
-    <div className="bg-gray-0d0 flex flex-col md:flex-row gap-12 justify-evenly items-center min-h-screen bg-no-repeat bg-cover bg-center bg-fixed bg-opacity-95 md:grid md:grid-cols-5 ">
+    <div className="bg-gray-0d0 flex flex-col md:flex-row gap-12 justify-evenly items-center md:grid md:grid-cols-5 ">
       {isLargeScreen ? <NavSidebar /> : null}
       <div className="flex flex-wrap gap-3 justify-center md:col-span-4">
         {championFiles.map((file) => (

@@ -30,14 +30,14 @@ const ChampionPage = () => {
   }, []);
 
   return (
-    <div className="bg-hero flex flex-col justify-evenly md:grid md:grid-cols-5 min-h-screen bg-no-repeat bg-cover bg-center bg-fixed bg-opacity-90 gap-3">
+    <div className="bg-gray-0d0  flex flex-col justify-evenly md:grid md:grid-cols-5 gap-12">
       {isLargeScreen ? <NavSidebar /> : null}
-      <div className="min-w-full col-span-3">
-        <h1 className="text-center text-7xl mt-10 md:text-9xl font-extrabold opacity-40 md:opacity-30">
+      <div className="min-w-full col-span-3 ">
+        <h1 className="text-center text-7xl mt-10 md:text-9xl font-extrabold opacity-40 md:opacity-30  text-white">
           {selectedChampion.name}
         </h1>
         {isLargeScreen ? (
-          <div className="flex flex-row ">
+          <div className="flex flex-row mt-16">
             <div>
               <img
                 src={`${BASE_URL}/images/${selectedChampion.files.image}`}
@@ -52,8 +52,8 @@ const ChampionPage = () => {
                 }}
               />
             </div>
-            <div className="bg-gray-500 opacity-40 md:text-sm lg:text-xl font-light text-center rounded-r flex items-center ">
-              <p className="m-2">
+            <div className="bg-gray-3b3 opacity-40 md:text-sm lg:text-xl font-light text-center rounded-r flex items-center ">
+              <p className="m-2 text-white">
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae,
                 repellat accusantium! Necessitatibus aspernatur voluptas
                 adipisci alias, odio nemo. Aperiam qui rerum consequatur maxime

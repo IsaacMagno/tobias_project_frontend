@@ -61,22 +61,22 @@ const Home = () => {
 
   return (
     // bg-hero
-    <div className="min-h-screen bg-gray-0d0 bg-no-repeat bg-cover bg-center bg-fixed bg-opacity-90 md:grid md:grid-cols-5 gap-12">
+    <div className="min-h-screen bg-gray-0d0  md:grid md:grid-cols-5 gap-12">
       {isLargeScreen ? <NavSidebar /> : null}
       <div className="flex justify-center items-center md:col-span-3">
-        <div className="text-white text-center flex flex-col gap-6 min-w-full">
-          <div className=" ">
-            <h1 className="text-xl md:text-2xl font-bold mt-1  p-6">
+        <div className="text-white text-center flex flex-col min-w-full">
+          <div className="mt-2">
+            <h1 className="text-xl md:text-2xl font-bold ">
               Bem vindo {user.name}
             </h1>
-            <div className="">
+            <div className="p-8">
               {load ? (
                 <div className="">
                   <Loading render={load} type={"folding-cube"} />
                 </div>
               ) : (
-                <div className="md:font-light break-words flex flex-col justify-center py-2">
-                  <p className="text-sm md:text-lg">
+                <div className="md:font-light break-words flex flex-col justify-center ">
+                  <p className="text-sm md:text-base">
                     {/* O tempo não cura tudo. Aliás, o tempo não cura nada, o tempo
                     apenas tira o incurável do centro das atenções. */}
                     {selectedPhrase.text}
@@ -89,11 +89,11 @@ const Home = () => {
               )}
             </div>
           </div>
-          <div className=" flex flex-col md:flex-row justify-evenly md:justify-center items-center ">
+          <div className=" flex flex-col md:flex-row justify-evenly md:justify-center items-center my-2">
             <SelectIncrease renderComponent={renderComponent} />
             <div className="md:ml-2">{ComponentRender}</div>
           </div>
-          <div className="">
+          <div className="my-2">
             <Calendar />
           </div>
           {!isLargeScreen ? (

@@ -73,12 +73,12 @@ const Stats = () => {
   }, [champions]);
 
   return (
-    <div className="flex flex-col text-white min-h-scren sticky top-0 justify-center">
+    <div className="flex flex-col text-white min-h-scren sticky top-0 justify-center mt-2">
       <div className="flex flex-col text-center self-center ">
         <img
           src={`${BASE_URL}/images/${champImage}`}
           alt={"Foto de um campeão"}
-          className="champ-img shadow shadow-black"
+          className="champ-img shadow shadow-black "
           style={{
             minHeight: "20vh",
             maxHeight: "30vh",
