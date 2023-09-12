@@ -73,7 +73,7 @@ const Stats = () => {
   }, [champions]);
 
   return (
-    <div className="flex flex-col text-white min-h-scren sticky top-0 justify-evenly">
+    <div className="flex flex-col text-white min-h-scren sticky top-0 justify-center">
       <div className="flex flex-col text-center self-center ">
         <img
           src={`${BASE_URL}/images/${champImage}`}
@@ -88,7 +88,7 @@ const Stats = () => {
         />
         {ChampTitle}
       </div>
-      <div className="mx-1 mb-8">
+      <div className="mx-1 my-4">
         <h1 className="mb-5 text-white/70 text-center font-medium text-sm md:text-xl md:font-semibold">
           Características
         </h1>

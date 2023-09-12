@@ -102,7 +102,7 @@ const TaskPage = () => {
   }, []);
 
   return (
-    <div className="bg-gray-0d0 md:grid md:grid-cols-5 gap-3 min-h-screen bg-no-repeat bg-cover bg-center bg-fixed bg-opacity-95">
+    <div className=" bg-gray-0d0 md:grid md:grid-cols-5 gap-12 min-h-screen bg-no-repeat bg-cover bg-center bg-fixed bg-opacity-95">
       {isLargeScreen ? <NavSidebar /> : null}
 
       <div className="min-w-full col-span-3">
@@ -136,13 +136,13 @@ const TaskPage = () => {
           </select>
 
           <button
-            className="bg-gray-800 p-3 text-center items-center rounded font-bold hover:bg-gray-700 text-white "
+            className="bg-gray-800 p-3 text-center items-center  rounded font-bold hover:bg-gray-700 text-white "
             onClick={() => handleCreate()}
           >
             Criar
           </button>
         </div>
-        <div className="flex gap-3 mt-12 flex-wrap ">
+        <div className="flex gap-3 mt-12 flex-wrap justify-center md:justify-start">
           {user.length === undefined
             ? task.map((task) => (
                 <div

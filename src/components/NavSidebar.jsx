@@ -5,13 +5,14 @@ import { ReactComponent as ChampionsIcon } from "../images/battle-svgrepo-com.sv
 import { ReactComponent as TaskIcon } from "../images/trend-svgrepo-com.svg";
 import { ReactComponent as AchievIcon } from "../images/win-svgrepo-com.svg";
 import { ReactComponent as OptionsIcon } from "../images/fix-svgrepo-com.svg";
+import tobiasIcon from "../images/tobias_icon.jpg";
 
 const NavSidebar = () => {
   const navigate = useNavigate();
   const [isLargeScreen, setIsLargeScreen] = useState(false);
 
   useEffect(() => {
-    const mediaQuery = window.matchMedia("(min-width: 768px)");
+    const mediaQuery = window.matchMedia("(min-width: 1024px)");
     setIsLargeScreen(mediaQuery.matches);
 
     const handleResize = () => setIsLargeScreen(mediaQuery.matches);
@@ -20,10 +21,17 @@ const NavSidebar = () => {
   }, []);
 
   return (
-    <div className="flex md:h-screen top-0 items-center justify-center md:justify-start">
-      <ul className="list-none md:space-y-2 flex md:flex-col ">
+    <div className="flex md:h-screen  bg-orange-400/90 min-h-full md:rounded-r shadow shadow-black">
+      <ul className="list-none md:space-y-2 flex md:flex-col min-w-full justify-center md:justify-start md:mt-12">
+        {isLargeScreen && (
+          <img
+            src={tobiasIcon}
+            className=" w-42 flex self-center rounded-full my-12 shadow shadow-black"
+          />
+        )}
+
         <li
-          className="nav-btn nav-btn-responsive hover:shadow-inner hover:shadow-black/20  rounded-l md:rounded-r md:rounded-l-none"
+          className="nav-btn nav-btn-responsive hover:shadow-inner hover:shadow-black/20  rounded-l md:rounded-r md:rounded-l-none "
           onClick={() => navigate("/home")}
         >
           <StartIcon className="" />
