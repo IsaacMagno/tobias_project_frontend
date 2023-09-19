@@ -24,23 +24,23 @@ const IntIncrease = () => {
   };
 
   const aux = async (statName, stat, setStat) => {
-    const champ = await statusUpdate(statName, parseInt(stat), id);
+    const champ = await statusUpdate(statName, parseFloat(stat), id);
     dispatch(selectChampion(champ));
     setStat("");
   };
 
   return (
-    <div className='container-stats'>
-      <h4 className='h4-stats text-white/80 bg-red-600'>Inteligência</h4>
+    <div className="container-stats">
+      <h4 className="h4-stats text-white/80 bg-red-600">Inteligência</h4>
 
-      <div className=''>
-        <div className='mb-3'>
+      <div className="">
+        <div className="mb-3">
           <input
-            className='input-stats'
-            id='study-increase'
-            placeholder='Horas de Estudo'
-            type='number'
-            name='study'
+            className="input-stats"
+            id="study-increase"
+            placeholder="Horas de Estudo"
+            type="number"
+            name="study"
             value={study}
             onChange={({ target: { value } }) =>
               handleChange(value, 0, 15, setStudy)
@@ -48,8 +48,8 @@ const IntIncrease = () => {
           />
 
           <button
-            className='btn-stats bg-red-600 hover:bg-red-500'
-            type='button'
+            className="btn-stats bg-red-600 hover:bg-red-500"
+            type="button"
             onClick={() => aux("study", study, setStudy)}
           >
             Enviar
@@ -57,14 +57,14 @@ const IntIncrease = () => {
         </div>
       </div>
 
-      <div className=''>
-        <div className='mb-3'>
+      <div className="">
+        <div className="mb-3">
           <input
-            className='input-stats'
-            id='reading-increase'
-            placeholder='Horas de Leitura'
-            type='number'
-            name='reading'
+            className="input-stats"
+            id="reading-increase"
+            placeholder="Horas de Leitura"
+            type="number"
+            name="reading"
             value={reading}
             onChange={({ target: { value } }) =>
               handleChange(value, 0, 5, setReading)
@@ -72,8 +72,8 @@ const IntIncrease = () => {
           />
 
           <button
-            className='btn-stats bg-red-600 hover:bg-red-500'
-            type='button'
+            className="btn-stats bg-red-600 hover:bg-red-500"
+            type="button"
             onClick={() => aux("reading", reading, setReading)}
           >
             Enviar
@@ -81,14 +81,14 @@ const IntIncrease = () => {
         </div>
       </div>
 
-      <div className=''>
-        <div className='mb-3'>
+      <div className="">
+        <div className="mb-3">
           <input
-            className='input-stats'
-            id='meditation-increase'
-            placeholder='Horas de Meditação'
-            type='number'
-            name='meditation'
+            className="input-stats"
+            id="meditation-increase"
+            placeholder="Horas de Meditação"
+            type="number"
+            name="meditation"
             value={meditation}
             onChange={({ target: { value } }) =>
               handleChange(value, 0, 5, setMeditation)
@@ -96,8 +96,8 @@ const IntIncrease = () => {
           />
 
           <button
-            className='btn-stats bg-red-600 hover:bg-red-500'
-            type='button'
+            className="btn-stats bg-red-600 hover:bg-red-500"
+            type="button"
             onClick={() => aux("meditation", meditation, setMeditation)}
           >
             Enviar

@@ -24,7 +24,7 @@ const AgiIncrease = () => {
   };
 
   const aux = async (statName, stat, setStat) => {
-    const champ = await statusUpdate(statName, parseInt(stat), id);
+    const champ = await statusUpdate(statName, parseFloat(stat), id);
     dispatch(selectChampion(champ));
     setStat("");
   };

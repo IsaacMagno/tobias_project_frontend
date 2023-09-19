@@ -24,23 +24,23 @@ const StrIncrease = () => {
   };
 
   const aux = async (statName, stat, setStat) => {
-    const champ = await statusUpdate(statName, parseInt(stat), id);
+    const champ = await statusUpdate(statName, parseFloat(stat), id);
     dispatch(selectChampion(champ));
     setStat("");
   };
 
   return (
-    <div className='container-stats'>
-      <h4 className='h4-stats text-black/50 bg-yellow-400'>Força</h4>
+    <div className="container-stats">
+      <h4 className="h4-stats text-black/50 bg-yellow-400">Força</h4>
 
-      <div className=''>
-        <div className='mb-3'>
+      <div className="">
+        <div className="mb-3">
           <input
-            className='input-stats'
-            id='upperLimb-increase'
-            placeholder='Membros Superiores'
-            type='number'
-            name='upperLimb'
+            className="input-stats"
+            id="upperLimb-increase"
+            placeholder="Membros Superiores"
+            type="number"
+            name="upperLimb"
             value={upperLimb}
             onChange={({ target: { value } }) =>
               handleChange(value, 0, 450, setUpperLimb)
@@ -48,8 +48,8 @@ const StrIncrease = () => {
           />
 
           <button
-            className='btn-stats bg-yellow-400 hover:bg-yellow-300 text-black/50'
-            type='button'
+            className="btn-stats bg-yellow-400 hover:bg-yellow-300 text-black/50"
+            type="button"
             onClick={() => aux("upperLimb", upperLimb, setUpperLimb)}
           >
             Enviar
@@ -57,14 +57,14 @@ const StrIncrease = () => {
         </div>
       </div>
 
-      <div className=''>
-        <div className='mb-3'>
+      <div className="">
+        <div className="mb-3">
           <input
-            className='input-stats'
-            id='abs-increase'
-            placeholder='Abdominais'
-            type='number'
-            name='abs'
+            className="input-stats"
+            id="abs-increase"
+            placeholder="Abdominais"
+            type="number"
+            name="abs"
             value={abs}
             onChange={({ target: { value } }) =>
               handleChange(value, 0, 450, setAbs)
@@ -72,8 +72,8 @@ const StrIncrease = () => {
           />
 
           <button
-            className='btn-stats bg-yellow-400 hover:bg-yellow-300 text-black/50'
-            type='button'
+            className="btn-stats bg-yellow-400 hover:bg-yellow-300 text-black/50"
+            type="button"
             onClick={() => aux("abs", abs, setAbs)}
           >
             Enviar
@@ -81,14 +81,14 @@ const StrIncrease = () => {
         </div>
       </div>
 
-      <div className=''>
-        <div className='mb-3'>
+      <div className="">
+        <div className="mb-3">
           <input
-            className='input-stats'
-            id='lowerLimb-increase'
-            placeholder='Membros Inferiores'
-            type='number'
-            name='lowerLimb'
+            className="input-stats"
+            id="lowerLimb-increase"
+            placeholder="Membros Inferiores"
+            type="number"
+            name="lowerLimb"
             value={lowerLimb}
             onChange={({ target: { value } }) =>
               handleChange(value, 0, 450, setLowerLimb)
@@ -96,8 +96,8 @@ const StrIncrease = () => {
           />
 
           <button
-            className='btn-stats bg-yellow-400 hover:bg-yellow-300 text-black/50'
-            type='button'
+            className="btn-stats bg-yellow-400 hover:bg-yellow-300 text-black/50"
+            type="button"
             onClick={() => aux("lowerLimb", lowerLimb, setLowerLimb)}
           >
             Enviar
