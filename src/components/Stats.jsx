@@ -12,6 +12,7 @@ const Stats = () => {
   const [activities, setActivities] = useState();
   const [champImage, setChampImage] = useState();
   const [ChampTitle, setChampTitle] = useState();
+  const [champId, setChampId] = useState();
 
   const navigate = useNavigate();
 
@@ -20,7 +21,9 @@ const Stats = () => {
   useEffect(() => {
     const { selectedChampion } = champions;
     if (selectedChampion.length === 0) return navigate("/champions");
-    const { statistics, activities } = selectedChampion;
+    const { statistics, activities, id } = selectedChampion;
+
+    setChampId(id);
 
     const cleanStats = cleanArray(Object.entries(statistics), "stats");
     const cleanActivities = cleanArray(
@@ -78,13 +81,14 @@ const Stats = () => {
         <img
           src={`${BASE_URL}/images/${champImage}`}
           alt={"Foto de um campeão"}
-          className="champ-img shadow shadow-black "
+          className="champ-img shadow shadow-black hover:cursor-pointer"
           style={{
             minHeight: "20vh",
             maxHeight: "30vh",
             minWidth: "20vh",
             maxWidth: "30vh",
           }}
+          onClick={() => navigate(`/champion/${champId}`)}
         />
         {ChampTitle}
       </div>
