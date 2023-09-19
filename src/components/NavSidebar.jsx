@@ -26,7 +26,8 @@ const NavSidebar = () => {
         {isLargeScreen && (
           <img
             src={tobiasIcon}
-            className=" w-42 flex self-center rounded-full my-12 shadow shadow-black"
+            className=" w-42 flex self-center rounded-full my-12 shadow shadow-black hover:cursor-pointer hover:shadow-lg"
+            onClick={() => navigate("/home")}
           />
         )}
 
