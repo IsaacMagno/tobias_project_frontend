@@ -20,8 +20,9 @@ const Stats = () => {
 
   useEffect(() => {
     const { selectedChampion } = champions;
+
     if (selectedChampion.length === 0) return navigate("/champions");
-    const { statistics, activities, id } = selectedChampion;
+    const { statistics, activities, id, title } = selectedChampion;
 
     setChampId(id);
 
@@ -31,43 +32,40 @@ const Stats = () => {
       "activities"
     );
 
-    if (cleanStats) {
-      const total = cleanStats.reduce((acc, stat) => acc + stat[1], 0);
-      if (total < 500) {
-        setChampTitle(
-          <p className="font-bold text-2xl bg-gray-800 p-1 mt-4 rounded">
-            Primata
-          </p>
-        );
-      } else if (total >= 500) {
-        setChampTitle(
-          <p className="font-bold text-2xl bg-yellow-600 p-1 mt-4 rounded">
-            Gibão
-          </p>
-        );
-      } else if (total >= 1000) {
-        setChampTitle(
-          <p className="font-bold text-2xl bg-red-800 p-1 mt-4 rounded">
-            Orangotango
-          </p>
-        );
-      } else if (total >= 2000) {
-        setChampTitle(
-          <p className="font-bold text-2xl bg-green-700 p-1 mt-4 rounded">
-            Gorila
-          </p>
-        );
-      } else if (total >= 5000) {
-        setChampTitle(
-          <p className="font-bold text-2xl bg-blue-900 p-1 mt-4 rounded">
-            Chimpanzé
-          </p>
-        );
-      } else if (total >= 10000) {
-        setChampTitle(
-          <p className="font-bold text-2xl bg-black p-1 mt-4 rounded">Humano</p>
-        );
-      }
+    if (title.includes("Primata")) {
+      setChampTitle(
+        <p className="font-bold text-2xl bg-gray-800 p-1 mt-4 rounded">
+          {title}
+        </p>
+      );
+    } else if (title.includes("Gibão")) {
+      setChampTitle(
+        <p className="font-bold text-2xl bg-yellow-600 p-1 mt-4 rounded">
+          {title}
+        </p>
+      );
+    } else if (title.includes("Orangotango")) {
+      setChampTitle(
+        <p className="font-bold text-2xl bg-red-800 p-1 mt-4 rounded">
+          {title}
+        </p>
+      );
+    } else if (title.includes("Gorila")) {
+      setChampTitle(
+        <p className="font-bold text-2xl bg-green-700 p-1 mt-4 rounded">
+          {title}
+        </p>
+      );
+    } else if (title.includes("Chimpanzé")) {
+      setChampTitle(
+        <p className="font-bold text-2xl bg-blue-900 p-1 mt-4 rounded">
+          {title}
+        </p>
+      );
+    } else if (title.includes("Humano")) {
+      setChampTitle(
+        <p className="font-bold text-2xl bg-black p-1 mt-4 rounded"> {title}</p>
+      );
     }
 
     setStats(cleanStats);
