@@ -7,7 +7,7 @@ const statusUpdate = async (nameStat, value, id) => {
     .put(`${BASE_URL}/activities/${id}`, {
       [nameStat]: value,
     })
-    .then(() => axios.get(BASE_URL))
+    .then(() => axios.get(`${BASE_URL}/champions`))
     .then((o) => o.data.champions);
 
   const championUpdated = actualChampion(update, id);
