@@ -9,7 +9,9 @@ export const getFiles = async () => {
 };
 
 export const getStats = async () => {
-  const allStats = await axios.get(BASE_URL).then((o) => o.data.champions);
+  const allStats = await axios
+    .get(`${BASE_URL}/champions`)
+    .then((o) => o.data.champions);
 
   return allStats;
 };
