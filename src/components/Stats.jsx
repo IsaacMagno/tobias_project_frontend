@@ -11,7 +11,10 @@ const Stats = () => {
   const [stats, setStats] = useState();
   const [activities, setActivities] = useState();
   const [champImage, setChampImage] = useState();
-  const [ChampTitle, setChampTitle] = useState();
+  const [champTitle, setChampTitle] = useState();
+  const [champXP, setChampXP] = useState();
+  const [champLevel, setChampLevel] = useState();
+  const [champDaystreak, setChampDaystreak] = useState();
   const [champId, setChampId] = useState();
 
   const navigate = useNavigate();
@@ -22,9 +25,13 @@ const Stats = () => {
     const { selectedChampion } = champions;
 
     if (selectedChampion.length === 0) return navigate("/champions");
-    const { statistics, activities, id, title } = selectedChampion;
+    const { statistics, activities, id, title, xp, level, daystreak } =
+      selectedChampion;
 
     setChampId(id);
+    setChampXP(xp);
+    setChampLevel(level);
+    setChampDaystreak(daystreak);
 
     const cleanStats = cleanArray(Object.entries(statistics), "stats");
     const cleanActivities = cleanArray(
@@ -76,6 +83,10 @@ const Stats = () => {
   return (
     <div className="flex flex-col text-white min-h-scren sticky top-0 justify-center mt-2">
       <div className="flex flex-col text-center self-center ">
+        <div className="flex gap-2 text-2xl my-2">
+          <p className="font-semibold text-orange-600">Dias em sequência:</p>
+          <p className="font-extrabold">{champDaystreak}</p>
+        </div>
         <img
           src={`${BASE_URL}/images/${champImage}`}
           alt={"Foto de um campeão"}
@@ -88,7 +99,16 @@ const Stats = () => {
           }}
           onClick={() => navigate(`/champion/${champId}`)}
         />
-        {ChampTitle}
+        <div className="flex self-end text-2xl gap-2 mt-2">
+          <p className="text-orange-600 font-semibold ">Level:</p>
+          <p className="font-extrabold">{champLevel}</p>
+        </div>
+        <div className="flex self-end text-2xl gap-2 ">
+          <p className="text-orange-600 font-semibold">Experiência: </p>
+          <p className="font-extrabold"> {champXP}</p>
+        </div>
+
+        {champTitle}
       </div>
       <div className="mx-1 my-4">
         <h1 className="mb-5 text-white/70 text-center font-medium text-sm md:text-xl md:font-semibold">

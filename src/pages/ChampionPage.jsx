@@ -10,6 +10,7 @@ import { useNavigate } from "react-router-dom";
 
 const ChampionPage = () => {
   const [isLargeScreen, setIsLargeScreen] = useState(false);
+  const [editModeEnable, setEditModeEnable] = useState(false);
 
   const navigate = useNavigate();
 
@@ -52,13 +53,19 @@ const ChampionPage = () => {
                 }}
               />
             </div>
-            <div className="bg-gray-3b3 opacity-40 md:text-sm lg:text-xl font-light text-center rounded-r flex items-center ">
-              <p className="m-2 text-white">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae,
-                repellat accusantium! Necessitatibus aspernatur voluptas
-                adipisci alias, odio nemo. Aperiam qui rerum consequatur maxime
-                reprehenderit, eos quis eveniet libero? Sint, minima.
-              </p>
+            <div className="bg-gray-3b3 opacity-40 md:text-sm lg:text-xl font-light  rounded-r flex items-center justify-center flex-grow">
+              {editModeEnable ? (
+                <textarea>AINDA NÃO FINALIZADO</textarea>
+              ) : (
+                <p className="m-2 text-white">{selectedChampion.biography}</p>
+              )}
+
+              <button
+                className="bg-red-500 p-2 self-end rounded m-1"
+                onClick={() => setEditModeEnable(!editModeEnable)}
+              >
+                {editModeEnable ? "Save" : "Edit"}
+              </button>
             </div>
           </div>
         ) : (
