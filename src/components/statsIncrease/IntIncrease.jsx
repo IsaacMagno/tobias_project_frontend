@@ -1,12 +1,19 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { selectChampion } from "../../Redux/reducers/championsSlice";
+import Select from "react-select";
 import statusUpdate from "./StatusUpdate";
 
 const IntIncrease = () => {
   const {
     user: { id },
   } = useSelector((state) => state.user);
+
+  const options = [
+    { value: "chocolate", label: "Chocolate" },
+    { value: "strawberry", label: "Strawberry" },
+    { value: "vanilla", label: "Vanilla" },
+  ];
 
   const dispatch = useDispatch();
 
@@ -46,6 +53,15 @@ const IntIncrease = () => {
               handleChange(value, 0, 15, setStudy)
             }
           />
+          {/* <Select
+            options={options}
+            styles={{
+              control: (baseStyles, state) => ({
+                ...baseStyles,
+                borderColor: state.isFocused ? "grey" : "red",
+              }),
+            }}
+          /> */}
 
           <button
             className="btn-stats bg-red-600 hover:bg-red-500"

@@ -3,7 +3,12 @@ import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { setChampions } from "../../Redux/reducers/championsSlice";
 import { setUser } from "../../Redux/reducers/userSlice";
-import { addEvent, removeEvent, getStats } from "../../services/axiosRequests";
+import {
+  addEvent,
+  removeEvent,
+  getStats,
+  updateDaystreak,
+} from "../../services/axiosRequests";
 
 import FullCalendar from "@fullcalendar/react";
 import daydgridPlugin from "@fullcalendar/daygrid";
@@ -72,6 +77,7 @@ const RenderCalendar = () => {
       };
       calendarApi.addEvent(newEvent);
       await addEvent(newEvent, id);
+      await updateDaystreak(id);
     }
 
     await getStats().then((o) => dispatch(setChampions(o)));

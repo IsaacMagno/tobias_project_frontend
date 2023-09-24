@@ -2,6 +2,15 @@ import axios from "axios";
 
 export const BASE_URL = process.env.REACT_APP_BASE_URL;
 
+export const updateChampionActivities = async (nameStat, value, id) => {
+  return await axios
+    .put(`${BASE_URL}/activities/${id}`, {
+      [nameStat]: value,
+    })
+    .then(() => axios.get(`${BASE_URL}/champions`))
+    .then((o) => o.data.champions);
+};
+
 export const getFiles = async () => {
   const allFiles = await axios.get(`${BASE_URL}/uploads`).then((o) => o.data);
 
@@ -82,4 +91,12 @@ export const updateTask = async (id, taskData) => {
 
 export const deleteTask = async (id) => {
   await axios.delete(`${BASE_URL}/task/${id}`);
+};
+
+export const updateDaystreak = async (id) => {
+  await axios.put(`${BASE_URL}/champion/daystreak/${id}`);
+};
+
+export const updateChampionExp = async (id, xp) => {
+  await axios.put(`${BASE_URL}/champion/xp/${id}`, { xp });
 };
