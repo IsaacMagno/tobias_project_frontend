@@ -91,7 +91,7 @@ const ChampionPage = () => {
                   {selectedChampion.biography}
                 </p>
               )}
-              {user.name === selectedChampion.name ? (
+              {user.username === selectedChampion.username ? (
                 <div className="flex justify-end  min-w-full">
                   <button
                     className="bg-white bg-opacity-50 hover:bg-opacity-100 p-2  rounded m-1"
