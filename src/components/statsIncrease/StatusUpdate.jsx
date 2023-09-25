@@ -1,4 +1,3 @@
-import axios from "axios";
 import actualChampion from "../../functions/actualChampion";
 import {
   updateDaystreak,
@@ -22,11 +21,12 @@ const expBase = {
 };
 
 const statusUpdate = async (nameStat, value, id) => {
-  const updatedStats = await updateChampionActivities(nameStat, value, id);
   const championExp = expBase[nameStat] * value;
 
   await updateDaystreak(id);
   await updateChampionExp(id, championExp);
+
+  const updatedStats = await updateChampionActivities(nameStat, value, id);
 
   const championUpdated = actualChampion(updatedStats, id);
 

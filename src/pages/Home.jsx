@@ -38,6 +38,7 @@ const Home = () => {
     if (!logged) return navigate("/");
 
     if (user != champions.selectedChampion) {
+      console.log("CAMPEAO DIFERENTE");
       dispatch(selectChampion(user));
     }
 

@@ -2,9 +2,9 @@ import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { useAlert } from "react-alert";
-import { championLogin } from "../services/axiosRequests";
+import { championLogin, getStats } from "../services/axiosRequests";
 import { setUser, setLoggin } from "../Redux/reducers/userSlice.js";
-import { selectChampion } from "../Redux/reducers/championsSlice";
+import { selectChampion, setChampions } from "../Redux/reducers/championsSlice";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -31,12 +31,17 @@ const Login = () => {
     if (!user.length) return alert.show("Usuario ou senha invalidos!");
 
     if (username && password) {
-      const { validLogin } = await championLogin({ username, password });
+      const {
+        validLogin: { isValid, champUpdated },
+      } = await championLogin({
+        username,
+        password,
+      });
 
-      if (validLogin) {
+      if (isValid) {
         dispatch(setLoggin(true));
-        dispatch(selectChampion(user[0]));
-        dispatch(setUser(user[0]));
+        dispatch(selectChampion(champUpdated));
+        dispatch(setUser(champUpdated));
 
         return navigate("/home");
       }

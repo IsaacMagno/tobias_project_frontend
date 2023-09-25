@@ -16,10 +16,7 @@ export const championsSlice = createSlice({
   },
 });
 
-export const {
-  setChampions,
-  selectChampion,
-  setChampionFiles,
-} = championsSlice.actions;
+export const { setChampions, selectChampion, setChampionFiles } =
+  championsSlice.actions;
 
 export default championsSlice.reducer;

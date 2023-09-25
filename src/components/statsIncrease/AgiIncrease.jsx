@@ -42,7 +42,7 @@ const AgiIncrease = () => {
           name="kmRun"
           value={race}
           onChange={({ target: { value } }) =>
-            handleChange(value, 0, 20, setRace)
+            handleChange(value, 0, 15, setRace)
           }
         />
         <button
@@ -63,7 +63,7 @@ const AgiIncrease = () => {
           name="jumpRope"
           value={rope}
           onChange={({ target: { value } }) =>
-            handleChange(value, 0, 500, setRope)
+            handleChange(value, 0, 1500, setRope)
           }
         />
         <button
@@ -85,7 +85,7 @@ const AgiIncrease = () => {
           value={bike}
           min={0}
           onChange={({ target: { value } }) =>
-            handleChange(value, 0, 20, setBike)
+            handleChange(value, 0, 25, setBike)
           }
         />
         <button
