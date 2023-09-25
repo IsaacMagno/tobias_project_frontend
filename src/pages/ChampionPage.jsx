@@ -1,20 +1,32 @@
 import React, { useEffect, useState } from "react";
 
-import { BASE_URL } from "../services/axiosRequests";
+import {
+  BASE_URL,
+  updateChampionBio,
+  getStats,
+} from "../services/axiosRequests";
+
+import { selectChampion } from "../Redux/reducers/championsSlice";
 
 import NavSidebar from "../components/NavSidebar";
 import Stats from "../components/Stats";
 
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
+
+import { ReactComponent as EditIcon } from "../images/edit-svgrepo-com.svg";
+import { ReactComponent as SaveIcon } from "../images/send-svgrepo-com.svg";
 
 const ChampionPage = () => {
   const [isLargeScreen, setIsLargeScreen] = useState(false);
   const [editModeEnable, setEditModeEnable] = useState(false);
+  const [editBioText, setEditBioText] = useState("");
 
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const champions = useSelector((state) => state.champions);
+
   const { selectedChampion } = champions;
 
   useEffect(() => {
@@ -30,16 +42,27 @@ const ChampionPage = () => {
     return () => mediaQuery.removeEventListener("change", handleResize);
   }, []);
 
+  const handleEditMode = async () => {
+    if (editModeEnable) {
+      await updateChampionBio(selectedChampion.id, editBioText);
+      await getStats(selectedChampion.id).then((o) =>
+        dispatch(selectChampion(o))
+      );
+    }
+
+    setEditModeEnable(!editModeEnable);
+  };
+
   return (
     <div className="bg-gray-0d0  flex flex-col justify-evenly md:grid md:grid-cols-5 gap-12">
       {isLargeScreen ? <NavSidebar /> : null}
-      <div className="min-w-full col-span-3 ">
+      <div className="min-w-full col-span-3">
         <h1 className="text-center text-7xl mt-10 md:text-9xl font-extrabold opacity-40 md:opacity-30  text-white">
           {selectedChampion.name}
         </h1>
         {isLargeScreen ? (
           <div className="flex flex-row mt-16">
-            <div>
+            <div className="bg-red-500">
               <img
                 src={`${BASE_URL}/images/${selectedChampion.files.image}`}
                 key={selectedChampion.files.image}
@@ -53,19 +76,32 @@ const ChampionPage = () => {
                 }}
               />
             </div>
-            <div className="bg-gray-3b3 opacity-40 md:text-sm lg:text-xl font-light  rounded-r flex items-center justify-center flex-grow">
+            <div className="bg-gray-3b3 opacity-40 md:text-sm lg:text-xl font-light  rounded-r flex flex-col items-center flex-grow justify-between">
               {editModeEnable ? (
-                <textarea>AINDA NÃO FINALIZADO</textarea>
+                <textarea
+                  className="text-center  text-2xl font-medium m-auto min-w-full"
+                  onChange={({ target: { value } }) => setEditBioText(value)}
+                  rows={3}
+                >
+                  {selectedChampion.biography}
+                </textarea>
               ) : (
-                <p className="m-2 text-white">{selectedChampion.biography}</p>
+                <p className="text-white text-center m-auto text-2xl font-bold">
+                  {selectedChampion.biography}
+                </p>
               )}
-
-              <button
-                className="bg-red-500 p-2 self-end rounded m-1"
-                onClick={() => setEditModeEnable(!editModeEnable)}
-              >
-                {editModeEnable ? "Save" : "Edit"}
-              </button>
+              <div className="flex justify-end  min-w-full">
+                <button
+                  className="bg-white bg-opacity-50 hover:bg-opacity-100 p-2  rounded m-1"
+                  onClick={() => handleEditMode()}
+                >
+                  {!editModeEnable ? (
+                    <EditIcon className="w-10 h-10" />
+                  ) : (
+                    <SaveIcon className="w-10 h-10" />
+                  )}
+                </button>
+              </div>
             </div>
           </div>
         ) : (
@@ -79,7 +115,7 @@ const ChampionPage = () => {
               />
             </div>
             <div className="bg-gray-500 opacity-40 md:text-xl font-light text-center rounded-b flex items-center">
-              <p className="m-2">
+              <p className="m-2 text-white ">
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae,
                 repellat accusantium! Necessitatibus aspernatur voluptas
                 adipisci alias, odio nemo. Aperiam qui rerum consequatur maxime

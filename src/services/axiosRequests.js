@@ -17,10 +17,18 @@ export const getFiles = async () => {
   return allFiles;
 };
 
-export const getStats = async () => {
-  const allStats = await axios
-    .get(`${BASE_URL}/champions`)
-    .then((o) => o.data.champions);
+export const getStats = async (id) => {
+  let allStats;
+
+  if (id) {
+    allStats = await axios
+      .get(`${BASE_URL}/champions/${id}`)
+      .then((o) => o.data.champions);
+  } else {
+    allStats = await axios
+      .get(`${BASE_URL}/champions`)
+      .then((o) => o.data.champions);
+  }
 
   return allStats;
 };
@@ -99,4 +107,8 @@ export const updateDaystreak = async (id) => {
 
 export const updateChampionExp = async (id, xp) => {
   await axios.put(`${BASE_URL}/champion/xp/${id}`, { xp });
+};
+
+export const updateChampionBio = async (id, bio) => {
+  await axios.put(`${BASE_URL}/champion/bio/${id}`, { bio });
 };

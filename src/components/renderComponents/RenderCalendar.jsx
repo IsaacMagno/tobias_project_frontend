@@ -79,7 +79,6 @@ const RenderCalendar = () => {
       calendarApi.addEvent(newEvent);
       await addEvent(newEvent, id);
       await updateDaystreak(id);
-      await updateChampionExp(id, 25);
     }
 
     await getStats().then((o) => dispatch(setChampions(o)));
