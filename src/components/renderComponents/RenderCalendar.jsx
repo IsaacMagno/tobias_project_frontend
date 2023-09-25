@@ -1,14 +1,16 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { setChampions } from "../../Redux/reducers/championsSlice";
+import {
+  setChampions,
+  selectChampion,
+} from "../../Redux/reducers/championsSlice";
 import { setUser } from "../../Redux/reducers/userSlice";
 import {
   addEvent,
   removeEvent,
   getStats,
   updateDaystreak,
-  updateChampionExp,
 } from "../../services/axiosRequests";
 
 import FullCalendar from "@fullcalendar/react";
@@ -81,7 +83,7 @@ const RenderCalendar = () => {
       await updateDaystreak(id);
     }
 
-    await getStats().then((o) => dispatch(setChampions(o)));
+    await getStats(id).then((o) => dispatch(selectChampion(o)));
   };
 
   return events ? (
