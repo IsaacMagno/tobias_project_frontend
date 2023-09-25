@@ -62,7 +62,7 @@ const ChampionPage = () => {
         </h1>
         {isLargeScreen ? (
           <div className="flex flex-row mt-16">
-            <div className="bg-red-500">
+            <div className="">
               <img
                 src={`${BASE_URL}/images/${selectedChampion.files.image}`}
                 key={selectedChampion.files.image}
