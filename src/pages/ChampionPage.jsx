@@ -26,6 +26,7 @@ const ChampionPage = () => {
   const dispatch = useDispatch();
 
   const champions = useSelector((state) => state.champions);
+  const { user } = useSelector((state) => state.user);
 
   const { selectedChampion } = champions;
 
@@ -90,18 +91,20 @@ const ChampionPage = () => {
                   {selectedChampion.biography}
                 </p>
               )}
-              <div className="flex justify-end  min-w-full">
-                <button
-                  className="bg-white bg-opacity-50 hover:bg-opacity-100 p-2  rounded m-1"
-                  onClick={() => handleEditMode()}
-                >
-                  {!editModeEnable ? (
-                    <EditIcon className="w-10 h-10" />
-                  ) : (
-                    <SaveIcon className="w-10 h-10" />
-                  )}
-                </button>
-              </div>
+              {user.name === selectedChampion.name ? (
+                <div className="flex justify-end  min-w-full">
+                  <button
+                    className="bg-white bg-opacity-50 hover:bg-opacity-100 p-2  rounded m-1"
+                    onClick={() => handleEditMode()}
+                  >
+                    {!editModeEnable ? (
+                      <EditIcon className="w-10 h-10" />
+                    ) : (
+                      <SaveIcon className="w-10 h-10" />
+                    )}
+                  </button>
+                </div>
+              ) : null}
             </div>
           </div>
         ) : (
