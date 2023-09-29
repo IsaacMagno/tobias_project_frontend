@@ -40,11 +40,7 @@ const TaskPage = () => {
   useEffect(() => {
     if (user.length !== undefined) return navigate("/");
 
-    const userAtt = champions.champions.filter(
-      (champ) => champ.username.toLowerCase() === user.username.toLowerCase()
-    );
-
-    dispatch(setUser(userAtt[0]));
+    dispatch(setUser(champions.selectedChampion));
   }, [champions, user]);
 
   const handleUpdate = async () => {
