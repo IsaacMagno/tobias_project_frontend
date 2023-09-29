@@ -25,6 +25,7 @@ const Stats = () => {
     const { selectedChampion } = champions;
 
     if (selectedChampion.length === 0) return navigate("/champions");
+
     const { statistics, activities, id, title, xp, level, daystreak } =
       selectedChampion;
 

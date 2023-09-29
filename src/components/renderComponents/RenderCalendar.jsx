@@ -25,21 +25,15 @@ const RenderCalendar = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const champions = useSelector((state) => state.champions);
+  const { selectedChampion } = useSelector((state) => state.champions);
   const { user, logged } = useSelector((state) => state.user);
 
   useEffect(() => {
     if (!logged) return navigate("/");
 
-    const userAtt = champions.champions.filter(
-      (champ) => champ.username.toLowerCase() === user.username.toLowerCase()
-    );
-
-    dispatch(setUser(userAtt[0]));
-
     const {
       calendars: { events },
-    } = user;
+    } = selectedChampion;
 
     const filteredEvents = events.map((ev) => {
       const eventObj = {
@@ -48,11 +42,12 @@ const RenderCalendar = () => {
         display: ev.display,
         backgroundColor: ev.backgroundColor,
       };
+
       return eventObj;
     });
 
     setEvents(filteredEvents);
-  }, [user]);
+  }, [selectedChampion]);
 
   const handleDateClick = async (dateClickInfo) => {
     const { id } = user;
@@ -83,7 +78,12 @@ const RenderCalendar = () => {
       await updateDaystreak(id);
     }
 
-    await getStats(id).then((o) => dispatch(selectChampion(o)));
+    const updatedChampionStats = await getStats(id).then(
+      (championUpdated) => championUpdated
+    );
+
+    dispatch(setUser(updatedChampionStats));
+    dispatch(selectChampion(updatedChampionStats));
   };
 
   return events ? (

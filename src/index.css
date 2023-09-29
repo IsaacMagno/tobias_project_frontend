@@ -107,3 +107,14 @@ input[type="number"] {
 .bg-gray-0d0 {
   background-color: #0d0d0d;
 }
+
+.margin-0-auto {
+  margin-left: 5rem;
+  margin-right: 5rem;
+}
+
+.textbox-sizes {
+  width: 90%;
+  resize: none;
+  white-space: pre-wrap;
+}

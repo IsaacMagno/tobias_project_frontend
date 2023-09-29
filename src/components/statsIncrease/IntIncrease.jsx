@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { selectChampion } from "../../Redux/reducers/championsSlice";
+import { setUser } from "../../Redux/reducers/userSlice";
 import Select from "react-select";
 import statusUpdate from "./StatusUpdate";
 
@@ -33,6 +34,8 @@ const IntIncrease = () => {
   const aux = async (statName, stat, setStat) => {
     const champ = await statusUpdate(statName, parseFloat(stat), id);
     dispatch(selectChampion(champ));
+    dispatch(setUser(champ));
+
     setStat("");
   };
 

@@ -32,6 +32,8 @@ const ChampionPage = () => {
 
   useEffect(() => {
     if (selectedChampion.length === 0) return navigate("/champions");
+
+    setEditBioText(selectedChampion.biography);
   }, [selectedChampion]);
 
   useEffect(() => {
@@ -80,15 +82,20 @@ const ChampionPage = () => {
             <div className="bg-gray-3b3 opacity-40 md:text-sm lg:text-xl font-light  rounded-r flex flex-col items-center flex-grow justify-between">
               {editModeEnable ? (
                 <textarea
-                  className="text-center  text-2xl font-medium m-auto min-w-full"
+                  className="text-center text-xl font-medium m-auto  margin-0-auto textbox-sizes rounded p-5"
                   onChange={({ target: { value } }) => setEditBioText(value)}
-                  rows={3}
+                  rows={8}
                 >
                   {selectedChampion.biography}
                 </textarea>
               ) : (
-                <p className="text-white text-center m-auto text-2xl font-bold">
-                  {selectedChampion.biography}
+                <p className="text-white text-center m-auto text-xl font-bold  margin-0-auto">
+                  {selectedChampion.biography.split("\n").map((line, i) => (
+                    <span key={i}>
+                      {line}
+                      <br />
+                    </span>
+                  ))}
                 </p>
               )}
               {user.username === selectedChampion.username ? (
@@ -118,12 +125,7 @@ const ChampionPage = () => {
               />
             </div>
             <div className="bg-gray-500 opacity-40 md:text-xl font-light text-center rounded-b flex items-center">
-              <p className="m-2 text-white ">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae,
-                repellat accusantium! Necessitatibus aspernatur voluptas
-                adipisci alias, odio nemo. Aperiam qui rerum consequatur maxime
-                reprehenderit, eos quis eveniet libero? Sint, minima.
-              </p>
+              <p className="m-2 text-white ">{selectedChampion.biography}</p>
             </div>
             {!isLargeScreen ? <Stats /> : null}
           </div>
