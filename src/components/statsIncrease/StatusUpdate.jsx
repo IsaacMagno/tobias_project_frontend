@@ -6,18 +6,18 @@ import {
 } from "../../services/axiosRequests";
 
 const expBase = {
-  kmRun: 200,
+  kmRun: 150,
   jumpRope: 0.5,
-  kmBike: 100,
+  kmBike: 50,
   upperLimb: 2,
   abs: 2,
-  lowerLimb: 2,
-  meals: 50,
+  lowerLimb: 3.5,
+  meals: 25,
   drinks: 5,
   sleep: 1.5,
-  study: 100,
+  study: 200,
   meditation: 1000,
-  reading: 50,
+  reading: 300,
 };
 
 const statusUpdate = async (nameStat, value, id) => {
