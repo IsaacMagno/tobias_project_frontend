@@ -7,7 +7,7 @@ import Stats from "../components/Stats";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { setUser } from "../Redux/reducers/userSlice";
-import { setChampions } from "../Redux/reducers/championsSlice";
+import { setChampions, selectChampion } from "../Redux/reducers/championsSlice";
 
 import {
   updateTask,
@@ -40,7 +40,11 @@ const TaskPage = () => {
   useEffect(() => {
     if (user.length !== undefined) return navigate("/");
 
-    dispatch(setUser(champions.selectedChampion));
+    if (user != champions.selectedChampion) {
+      dispatch(selectChampion(user));
+    }
+
+    dispatch(setUser(user));
   }, [champions, user]);
 
   const handleUpdate = async () => {
