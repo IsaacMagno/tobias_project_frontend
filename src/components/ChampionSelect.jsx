@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import NavSidebar from "./NavSidebar";
 
 import { useNavigate } from "react-router-dom";
-import { BASE_URL } from "../services/axiosRequests";
+import { BASE_URL, getStats } from "../services/axiosRequests";
 
 import { selectChampion } from "../Redux/reducers/championsSlice";
 import { useSelector, useDispatch } from "react-redux";
@@ -18,8 +18,11 @@ const ChampionSelect = () => {
 
   const championFiles = champions.map((champ) => champ.files);
 
-  const selectChamp = (id) => {
-    const champ = actualChampion(champions, id);
+  const selectChamp = async (id) => {
+    // const champ = actualChampion(champions, id);
+    const champ = await getStats(id);
+
+    console.log(champ);
     dispatch(selectChampion(champ));
     return navigate(`/champion/${id}`);
   };

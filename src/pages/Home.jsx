@@ -12,7 +12,6 @@ import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { getPhrases } from "../services/axiosRequests";
 import { selectChampion } from "../Redux/reducers/championsSlice";
-import { setUser } from "../Redux/reducers/userSlice";
 
 const Home = () => {
   const navigate = useNavigate();
