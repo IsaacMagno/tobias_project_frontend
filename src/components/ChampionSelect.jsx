@@ -22,7 +22,7 @@ const ChampionSelect = () => {
     // const champ = actualChampion(champions, id);
     const champ = await getStats(id);
 
-    console.log(champ);
+    // console.log(champ);
     dispatch(selectChampion(champ));
     return navigate(`/champion/${id}`);
   };
