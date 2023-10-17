@@ -33,7 +33,7 @@ const RenderCalendar = () => {
 
     const {
       calendars: { events },
-    } = selectedChampion;
+    } = user;
 
     const filteredEvents = events.map((ev) => {
       const eventObj = {
@@ -47,7 +47,7 @@ const RenderCalendar = () => {
     });
 
     setEvents(filteredEvents);
-  }, [selectedChampion]);
+  }, [user]);
 
   const handleDateClick = async (dateClickInfo) => {
     const { id } = user;
@@ -83,7 +83,7 @@ const RenderCalendar = () => {
     );
 
     dispatch(setUser(updatedChampionStats));
-    dispatch(selectChampion(updatedChampionStats));
+    // dispatch(selectChampion(updatedChampionStats));
   };
 
   return events ? (

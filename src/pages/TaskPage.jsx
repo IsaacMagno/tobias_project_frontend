@@ -40,15 +40,13 @@ const TaskPage = () => {
   useEffect(() => {
     if (user.length !== undefined) return navigate("/");
 
-    if (user != champions.selectedChampion) {
-      dispatch(selectChampion(user));
-    }
-
-    dispatch(setUser(user));
+    // if (user != champions.selectedChampion) {
+    //   dispatch(selectChampion(user));
+    // }
   }, [champions, user]);
 
-  const handleUpdate = async () => {
-    await getStats().then((o) => dispatch(setChampions(o)));
+  const handleUpdate = async (userId) => {
+    await getStats(userId).then((o) => dispatch(setUser(o)));
   };
 
   const handleChange = async (task, id, name) => {
@@ -63,10 +61,10 @@ const TaskPage = () => {
     }
   };
 
-  const handleSubmit = async (name) => {
+  const handleSubmit = async (name, userId) => {
     await updateTask(taskId, { actual: taskValue[name] });
 
-    handleUpdate();
+    handleUpdate(userId);
 
     setTaskValue({ [name]: "" });
     setTaskId();
@@ -190,7 +188,9 @@ const TaskPage = () => {
                     <div className="flex">
                       <button
                         className="bg-gray-818 p-1 rounded-r hover:bg-white/30"
-                        onClick={() => handleSubmit(task.name)}
+                        onClick={() =>
+                          handleSubmit(task.name, task.champion_id)
+                        }
                       >
                         Enviar
                       </button>

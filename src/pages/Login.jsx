@@ -61,7 +61,7 @@ const Login = () => {
           <div className="rounded-r p-8 flex flex-col justify-evenly items-center bg-white relative">
             <form
               onSubmit={doLogin}
-              className="bg-white flex flex-col items-center justify-evenly"
+              className="flex flex-col items-center justify-evenly "
             >
               <input
                 className="input-login"
